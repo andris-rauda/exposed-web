@@ -56,13 +56,24 @@
             </p>
           </div>
 
-          <div th:fragment="demandVinyl" class="inner cover">
+          <div th:fragment="demandVinyl" class="inner cover" style="display:none">
             <h1 class="cover-heading">Demand Vinyl</h1>
-            <p class="lead">You asked for vinyl, but we haven't released it yet.</p>
+            <p class="lead">We are strongly considering releasing our music in the mighty vinyl format, 
+            but there are literary tons of records getting out there and we need your support to go through with this.</p>
+            <p class="lead">Don't worry, we are not asking for your money!</p>
+            <p class="lead">However, if you are truly interested, please let us know by subscribing to our mailing list.</p>
+            <p class="lead">We won't spam you with irrelevant bullshit or give away your email address to any third parties, 
+            just send brief notification, when our records actually hit the shops.</p>
+            <div class="input-group">
+                <input type="email" class="form-control" placeholder="your-email@domain.com"/>
+                <span class="input-group-btn">
+                   <button class="btn btn-default" type="button">Subscribe!</button>
+                </span>
+            </div>
           </div>
 
-          <div th:fragment="contacts" class="inner cover">
-            <h1 class="cover-heading">Contacts</h1>
+          <div th:fragment="contact" class="inner cover" style="display:none">
+            <h1 class="cover-heading">Contact</h1>
             <p class="lead">
               Email us at <a href="mailto:staff@exposedrecords.net">exposedrecords.net</a>
             </p>
@@ -92,7 +103,7 @@
         $('#mainMenu li a').click(function() {
         	updateActiveMenuItem($(this));
         	showContentByLink($(this).attr('href'));
-        	$('.active').text($(this).text());
+        	//$('.active').text($(this).text());
         });
 
         // show item form hash or fallback to home
