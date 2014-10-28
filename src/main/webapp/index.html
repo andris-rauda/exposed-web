@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -37,20 +37,34 @@
         <div class="cover-container">
           <div class="masthead clearfix">
             <div class="inner">
-              <!--<h3 class="masthead-brand">Cover</h3>-->
-              <ul class="nav masthead-nav">
-                <li class="active"><a href="#">Home</a></li>
-                <li><a href="#">Demand Vinyl</a></li>
-                <li><a href="#">Contact</a></li>
+              <h3 class="masthead-brand">
+                <img src="images/xp-sketch-2_3.jpg" style="width: 150px" alt="Exposed Records" title="Exposed Records" />
+              </h3>
+              <ul class="nav masthead-nav" id="mainMenu">
+                <li class="active"><a href="#home">Home</a></li>
+                <li><a href="#demandVinyl">Demand Vinyl</a></li>
+                <li><a href="#contact">Contact</a></li>
               </ul>
             </div>
           </div>
 
-          <div class="inner cover">
+          <div th:fragment="home" class="inner cover">
             <h1 class="cover-heading">Exposed Records</h1>
             <p class="lead"><iframe width="100%" height="166" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/173903049&amp;color=ff5500&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false"></iframe></p>
             <p class="lead">
-              <a href="#" class="btn btn-lg btn-success">I want this on vinyl!</a>
+              <a href="#demandVinyl" class="btn btn-lg btn-success">I want this on vinyl!</a>
+            </p>
+          </div>
+
+          <div th:fragment="demandVinyl" class="inner cover">
+            <h1 class="cover-heading">Demand Vinyl</h1>
+            <p class="lead">You asked for vinyl, but we haven't released it yet.</p>
+          </div>
+
+          <div th:fragment="contacts" class="inner cover">
+            <h1 class="cover-heading">Contacts</h1>
+            <p class="lead">
+              Email us at <a href="mailto:staff@exposedrecords.net">exposedrecords.net</a>
             </p>
           </div>
 
@@ -68,6 +82,50 @@
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+    <!-- small js to keep templates functional and similar to deployed app -->
+    <!-- make sure it comes before bootstrap js to enforce it's rules on collapse -->
+    <script th:remove="all">
+    // <![CDATA[
+    $(document).ready(function() {
+    	// show/hide on navbar click
+        $('#mainMenu li a').click(function() {
+        	updateActiveMenuItem($(this));
+        	showContentByLink($(this).attr('href'));
+        	$('.active').text($(this).text());
+        });
+
+        // show item form hash or fallback to home
+        hash = window.location.hash || '#home';        
+   		$('#mainMenu li a[href=' + hash + ']').click();
+    });
+
+    isContentDiv = function() {
+    	return $(this).attr('th:fragment') 
+    		&& $(this).attr('th:fragment') != 'footer' 
+    		&&  $(this).attr('th:fragment') != 'navbar' 
+    };
+
+    // set as active clicked item
+    updateActiveMenuItem = function(item) {
+		item.parent().siblings().removeClass('active');
+		item.parent().addClass('active');
+		/*$('.navbar-collapse').collapse('hide');*/
+    };
+
+	// show selected content item and hide others
+    showContentByLink = function(lnk) {
+    	$('div').filter(isContentDiv).each(function() {       		
+    	     if ('#' + $(this).attr('th:fragment') == lnk) {        	    	 
+    	    	 $(this).show();	 
+    	     } else {
+    	    	 $(this).hide();
+    	     }
+        });    	
+    }
+ 	// ]]>
+    </script>
+
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="js/bootstrap.min.js"></script>
   </body>
