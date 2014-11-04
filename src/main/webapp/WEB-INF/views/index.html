@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="utf-8"/>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+
+	<title th:text="#{title} + (${page == menuItems[0]} ? '' : ' - ' + #{${'theader.nav.' + page}})">Exposed Records</title>
+	<meta name="description" content="Djbar homepage" th:content="#{meta.description}"/>
+	<meta name="viewport" content="width=device-width,initial-scale=1"/>
+	<link rel="shortcut icon" type="image/x-icon" href="../../favicon.ico" th:href="@{~/favicon.ico(v=1)}" />
+
+	<link rel="stylesheet" href="../../css/bootstrap.css" th:href="@{~/css/bootstrap.min.css(v=3.2.0)}"/>	
+	<link rel="stylesheet" href="../../css/djbar.css" th:href="@{~/css/default.css(v=1)}"/>
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.js" th:src=@{~/js/html5shiv.js}></script>
+      <script src="../../js/respond.min.js" th:src=@{~/js/respond.min.js}></script>
+    <![endif]-->
+
+    <script type="text/javascript" th:replace="analytics :: analytics"></script>
+	<script src="../../js/jquery.min.js" th:src="@{~/js/jquery.min.js(v=1.11.1)}"></script>
+</head>
+
+<body>
+    <div class="container topMenu" th:replace="templates :: navbar">navbar</div>     
+
+    <div class="container pageContent" th:replace="templates :: ${templateName}">main content(home, contacts etc)</div> 
+
+	<div class="container footer" th:replace="templates :: footer">footer</div>
+
+	<script src="../../js/bootstrap.js" th:src="@{~/js/bootstrap.min.js}"></script>
+
+	<script>
+		/*<![CDATA[*/
+		      //Embbeded Javascript    
+		/*]]>*/
+	</script>
+
+</body>
+</html>
