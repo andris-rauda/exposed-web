@@ -12,7 +12,7 @@
 	<link rel="shortcut icon" type="image/x-icon" href="../../favicon.ico" th:href="@{~/favicon.ico(v=1)}" />
 
 	<link rel="stylesheet" href="../../css/bootstrap.css" th:href="@{~/css/bootstrap.min.css(v=3.2.0)}"/>	
-	<link rel="stylesheet" href="../../css/djbar.css" th:href="@{~/css/default.css(v=1)}"/>
+	<link rel="stylesheet" href="../../css/default.css" th:href="@{~/css/default.css(v=1)}"/>
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -20,16 +20,24 @@
       <script src="../../js/respond.min.js" th:src=@{~/js/respond.min.js}></script>
     <![endif]-->
 
-    <script type="text/javascript" th:replace="analytics :: analytics"></script>
 	<script src="../../js/jquery.min.js" th:src="@{~/js/jquery.min.js(v=1.11.1)}"></script>
 </head>
 
 <body>
-    <div class="container topMenu" th:replace="templates :: navbar">navbar</div>     
+    <script type="text/javascript" th:replace="analytics :: analytics"></script>
 
-    <div class="container pageContent" th:replace="templates :: ${templateName}">main content(home, contacts etc)</div> 
+    <div class="site-wrapper">
+      <div class="site-wrapper-inner">
+        <div class="cover-container">
 
-	<div class="container footer" th:replace="templates :: footer">footer</div>
+          <div class="container topMenu" th:replace="templates :: navbar">navbar</div>     
+
+          <div class="container pageContent" th:replace="templates :: ${templateName}">main content(home, contacts etc)</div> 
+
+          <div class="container footer" th:replace="templates :: footer">footer</div>
+        </div>
+      </div>
+    </div>
 
 	<script src="../../js/bootstrap.js" th:src="@{~/js/bootstrap.min.js}"></script>
 

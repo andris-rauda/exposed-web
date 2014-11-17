@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
   <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <title>Exposed Records</title>
 
     <!-- Bootstrap -->
-    <link href="../../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../css/bootstrap.min.css" rel="stylesheet"/>
 
     <!-- Custom styles for this template -->
-    <link href="../../css/default.css" rel="stylesheet">
+    <link href="../../css/default.css" rel="stylesheet"/>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -20,28 +20,20 @@
     <![endif]-->
   </head>
   <body>
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-56087455-1', 'auto');
-  ga('send', 'pageview');
-
-</script>
     <div class="site-wrapper">
 
       <div class="site-wrapper-inner">
 
         <div class="cover-container">
-          <div class="masthead clearfix">
+          <div th:fragment="navbar" class="masthead clearfix">
             <div class="inner">
               <h3 class="masthead-brand">
                 <img src="../../images/xp-sketch-2_3.jpg" th:src="@{~/images/xp-sketch-2_3.jpg}" style="width: 150px" alt="Exposed Records" title="Exposed Records" />
               </h3>
-              <ul class="nav masthead-nav" id="mainMenu">
-                <li class="active"><a href="#home">Home</a></li>
+              <ul class="nav masthead-nav" id="mainMenu" th:remove="all-but-first">
+                <li th:each="menuItem : ${menuItems}" th:classappend="${page == menuItem}? 'active'">                
+                  <a href="#home" th:href="@{${menuItem == menuItems[0] ? '~/' : '~/' + menuItem}}" th:text="#{${'theader.nav.' + menuItem}}">Home</a>                
+                </li>
                 <li><a href="#demandVinyl">Demand Vinyl</a></li>
                 <li><a href="#contact">Contact</a></li>
               </ul>
@@ -54,60 +46,55 @@
             <div class="lead">
               <div style="float:left">
                 <a href="https://exposedrecords.bandcamp.com/" rel="nofollow" target="_blank">
-                	<img width="32" height="32" src="../../images/bandcamp.png" th:src="@{~/images/bandcamp.png}"  alt="Follow us on BandCamp" title="Follow us on BandCamp">
+                	<img width="32" height="32" src="../../images/bandcamp.png" th:src="@{~/images/bandcamp.png}"  alt="Follow us on BandCamp" title="Follow us on BandCamp" />
 				</a>
                 <a href="https://www.facebook.com/pages/Exposed-Records/280587362151406" rel="nofollow" target="_blank">
-                	<img width="32" height="32" src="../../images/facebook.png" th:src="@{~/images/facebook.png}" alt="Follow us on Facebook " title="Follow us on Facebook ">
+                	<img width="32" height="32" src="../../images/facebook.png" th:src="@{~/images/facebook.png}" alt="Follow us on Facebook " title="Follow us on Facebook" />
 				</a>
                 <a href="https://twitter.com/exposed_records" rel="nofollow" target="_blank">
-                	<img width="32" height="32" src="../../images/twitter.png" th:src="@{~/images/twitter.png}"  alt="Follow us on Twitter" title="Follow us on Twitter">
+                	<img width="32" height="32" src="../../images/twitter.png" th:src="@{~/images/twitter.png}"  alt="Follow us on Twitter" title="Follow us on Twitter" />
                 </a>
                 <a href="https://soundcloud.com/exposedrecords" rel="nofollow" target="_blank">
-                	<img width="32" height="32" src="../../images/soundcloud.png" th:src="@{~/images/soundcloud.png}" alt="Follow us on SoundCloud" title="Follow us on SoundCloud">
+                	<img width="32" height="32" src="../../images/soundcloud.png" th:src="@{~/images/soundcloud.png}" alt="Follow us on SoundCloud" title="Follow us on SoundCloud" />
                 </a>
                 <a href="http://www.mixcloud.com/exposedrecords/" rel="nofollow" target="_blank">
-                    <img width="32" height="32" src="../../images/mixcloud.png" th:src="@{~/images/mixcloud.png}" alt="Follow us on MixCloud" title="Follow us on MixCloud">
+                    <img width="32" height="32" src="../../images/mixcloud.png" th:src="@{~/images/mixcloud.png}" alt="Follow us on MixCloud" title="Follow us on MixCloud" />
                 </a>
               </div>
               <div style="float:right"> 
-                   <a href="#demandVinyl" class="btn btn-lg btn-success">I want this on vinyl!</a>
+                   <a href="#demandVinyl" th:href="@{~/demandVinyl}" class="btn btn-md btn-success">I want this on vinyl!</a>
               </div>
             </div>
           </div>
 
-          <div th:fragment="demandVinyl" class="inner cover" style="display:none">
+          <div th:fragment="demandVinyl" class="inner cover">
             <h1 class="cover-heading">Demand Vinyl</h1>
-            <p class="lead">We are strongly considering releasing our music in the mighty vinyl format, 
-            but there are literary tons of records getting out there and we need your support to go through with this.</p>
-            <p class="lead">Don't worry, we are not asking for your money!</p>
-            <p class="lead">However, if you are truly interested, please let us know by subscribing to our mailing list.</p>
-            <p class="lead">We won't spam you with irrelevant bullshit or give away your email address to any third parties, 
-            just send brief notification, when our records actually hit the shops.</p>
-            <div class="input-group">
+            <p class="lead">Our music is not released on vinyl yet, but it will be soon.<br/>
+            Please, show us your support by subscribing to our mailing list!</p>
+            <p class="input-group">
                 <input type="email" class="form-control" placeholder="your-email@domain.com"/>
                 <span class="input-group-btn">
                    <button class="btn btn-default" type="button">Subscribe!</button>
                 </span>
-            </div>
+            </p>
+            <p>Don't worry, we won't spam you with irrelevant messages or give away your address to any 3rd parties, just let you know, when our records hit the shops.</p>
           </div>
 
-          <div th:fragment="contact" class="inner cover" style="display:none">
+          <div th:fragment="contact" class="inner cover">
             <h1 class="cover-heading">Contact</h1>
             <p class="lead">
               Email us at <a href="mailto:staff@exposedrecords.net">exposedrecords.net</a>
             </p>
           </div>
 
-          <div class="mastfoot">
+          <div th:fragment="footer" class="mastfoot">
             <div class="inner">
               <p>&copy; ExposedRecords.net 2014</p>
             </div>
           </div>
 
         </div>
-
       </div>
-
     </div>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
