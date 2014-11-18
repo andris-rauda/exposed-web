@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
@@ -24,7 +26,8 @@ import com.google.appengine.api.utils.SystemProperty;
 @Controller
 public class IndexController {
 
-    private static final Logger logger = LoggerFactory.getLogger(IndexController.class);
+    private static final Logger logger = LoggerFactory
+            .getLogger(IndexController.class);
 
     // TODO use more dynamic way to validate existing pages (check messages?)
     private static final String NORMAL_ERROR_PAGE = "miss";
@@ -62,7 +65,8 @@ public class IndexController {
             String applicationVersion = SystemProperty.applicationVersion.get();
 
             if (applicationVersion != null) {
-                String[] applicationVersionSplit = applicationVersion.split("\\.");
+                String[] applicationVersionSplit = applicationVersion
+                        .split("\\.");
                 assert applicationVersionSplit.length == 2 : "Invalid appengine applicationVersion property";
 
                 environment = applicationVersionSplit[0];
@@ -90,7 +94,9 @@ public class IndexController {
      * @throws Exception
      */
     @RequestMapping(value = { "/{page}" }, method = RequestMethod.GET)
-    public String page(@PathVariable String page, Model model, HttpServletResponse response) throws Exception {
+    public String page(@PathVariable String page, Model model,
+            HttpServletRequest request, HttpServletResponse response)
+            throws Exception {
         if (!MENU_ITEMS.contains(page) && !NORMAL_ERROR_PAGE.equals(page)) {
             if (logger.isWarnEnabled()) {
                 logger.warn("invalid page: " + page);
@@ -108,6 +114,20 @@ public class IndexController {
 
         if (googleAnalyticsToken != null) {
             model.addAttribute("googleAnalyticsAccount", googleAnalyticsToken);
+        }
+
+        // fetch email from cookies
+        if ("demandVinyl".equals(page)) {
+            for (Cookie cookie : request.getCookies()) {
+                if (SubscriptionController.COOKIE_EMAIL
+                        .equals(cookie.getName())) {
+                    model.addAttribute("email", cookie.getValue());
+                }
+                if (SubscriptionController.COOKIE_EMAIL_VERIFIED.equals(cookie
+                        .getName())) {
+                    model.addAttribute("emailVerified", cookie.getValue());
+                }
+            }
         }
 
         return "index";

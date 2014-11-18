@@ -69,15 +69,40 @@
 
           <div th:fragment="demandVinyl" class="inner cover">
             <h1 class="cover-heading">Demand Vinyl</h1>
-            <p class="lead">Our music is not released on vinyl yet, but it will be soon.<br/>
-            Please, show us your support by subscribing to our mailing list!</p>
-            <p class="input-group">
-                <input type="email" class="form-control" placeholder="your-email@domain.com"/>
-                <span class="input-group-btn">
-                   <button class="btn btn-default" type="button">Subscribe!</button>
-                </span>
-            </p>
-            <p>Don't worry, we won't spam you with irrelevant messages or give away your address to any 3rd parties, just let you know, when our records hit the shops.</p>
+            <div th:if="${email == null}">
+	            <p class="lead">Our music is not released on vinyl yet, but it will be soon.<br/>
+	            Please, show us your support by subscribing to our mailing list!</p>
+	            <form id="subscriptionForm" action="subscribe" method="post">
+		            <p class="input-group">
+		                <input name="email" type="email" class="form-control" placeholder="your-email@domain.com" required="required" />
+		                <span class="input-group-btn">
+		                   <button class="btn btn-default" type="submit">Subscribe!</button>
+		                </span>
+		            </p>
+	            </form>
+	            <p th:if="${email != null}">
+	            Thank you! <span th:text="${email}"></span>, verified <span th:text="${emailVerified}"></span>
+	            </p>
+	            <p>Don't worry, we won't spam you with irrelevant messages or give away your address to any 3rd parties, just let you know, when our records hit the stores.</p>
+            </div>
+            <div th:if="${email != null and emailVerified == null}">
+                <p>Thank you for subscribing to our release notes!<br/>
+                Verification link has been sent to email address you provided.
+                </p>
+	            <form id="subscriptionForm" method="post" action="unsubscribe">
+	                <input name="email" type="hidden" th:value="${email}" />
+	                <button class="btn btn-default" type="submit">Unsubscribe</button>
+	            </form>
+            </div>
+            <div th:if="${email != null and emailVerified != null}">
+                <p>Our music is not released on vinyl yet, but it will be soon.<br/>
+                We will notify you as soon as our records hit the stores.
+                </p>
+	            <form id="subscriptionForm" method="post" action="unsubscribe">
+	                <input name="email" type="hidden" th:value="${email}" />
+	                <button class="btn btn-default" type="submit">Unubscribe</button>
+	            </form>
+            </div>
           </div>
 
           <div th:fragment="contact" class="inner cover">
