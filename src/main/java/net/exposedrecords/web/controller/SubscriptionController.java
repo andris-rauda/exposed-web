@@ -5,7 +5,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import net.exposedrecords.web.domain.SubscriptionService;
+import net.exposedrecords.web.service.SubscriptionService;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -57,14 +57,14 @@ public class SubscriptionController {
      */
     @RequestMapping(value = { "/verify" }, method = RequestMethod.GET)
     public String verify(@RequestParam("email") String email,
-            @RequestParam("code") String confirmationCode,
+            @RequestParam("code") String verificationCode,
             HttpServletResponse response) {
 
         if (logger.isInfoEnabled()) {
             logger.info("verify: " + email);
         }
 
-        if (subscriptionService.verify(email, confirmationCode)) {
+        if (subscriptionService.verify(email, verificationCode)) {
             Cookie cookie = new Cookie(COOKIE_EMAIL_VERIFIED,
                     Boolean.TRUE.toString());
             response.addCookie(cookie);
@@ -78,14 +78,14 @@ public class SubscriptionController {
      */
     @RequestMapping(value = { "/unsubscribe" }, method = RequestMethod.GET)
     public String unsubscribe(@RequestParam("email") String email,
-            @RequestParam("code") String confirmationCode,
+            @RequestParam("code") String verificationCode,
             HttpServletRequest request, HttpServletResponse response) {
 
         if (logger.isInfoEnabled()) {
-            logger.info("unsubscribe: " + email + ", code: " + confirmationCode);
+            logger.info("unsubscribe: " + email + ", code: " + verificationCode);
         }
 
-        if (subscriptionService.reset(email, confirmationCode)) {
+        if (subscriptionService.reset(email, verificationCode)) {
             resetCookies(request, response);
         }
 

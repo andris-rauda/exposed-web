@@ -8,7 +8,7 @@ import java.util.Date;
  */
 public class Subscription {
     private String email;
-    private String confirmationCode;
+    private String verificationCode;
     private Date creationDate;
     private Date confirmationDate;
 
@@ -20,12 +20,12 @@ public class Subscription {
         this.email = email;
     }
 
-    public String getConfirmationCode() {
-        return confirmationCode;
+    public String getVerificationCode() {
+        return verificationCode;
     }
 
-    public void setConfirmationCode(String confirmationCode) {
-        this.confirmationCode = confirmationCode;
+    public void setVerificationCode(String verificationCode) {
+        this.verificationCode = verificationCode;
     }
 
     public Date getCreationDate() {

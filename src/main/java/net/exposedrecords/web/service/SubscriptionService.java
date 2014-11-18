@@ -1,10 +1,13 @@
-package net.exposedrecords.web.domain;
+package net.exposedrecords.web.service;
 
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.util.Date;
 
 import javax.annotation.Resource;
+
+import net.exposedrecords.web.domain.Subscription;
+import net.exposedrecords.web.domain.SubscriptionRepository;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,7 +22,13 @@ public class SubscriptionService {
     private static final char[] HEX = { '0', '1', '2', '3', '4', '5', '6', '7',
             '8', '9', 'a', 'b', 'c', 'd', 'e', 'f' };
 
+    private MailingService mailingService;
     private SubscriptionRepository subscriptionRepository;
+
+    @Resource
+    public void setMailingService(MailingService mailingService) {
+        this.mailingService = mailingService;
+    }
 
     @Resource
     public void setSubscriptionRepository(
@@ -60,15 +69,22 @@ public class SubscriptionService {
         Subscription subscription = new Subscription();
         subscription.setCreationDate(new Date());
         subscription.setEmail(email);
-        subscription.setConfirmationCode(generateConfirmationCode());
+        subscription.setVerificationCode(generateConfirmationCode());
 
         subscriptionRepository.save(subscription);
 
-        // FIXME send verification email
+        String verificationCode = subscription.getVerificationCode();
+
+        mailingService
+                .send(email,
+                        "Subscription verification from ExposedRecords.NET",
+                        String.format(
+                                "Open this link to verify: http://exposedrecords.net/verify?email=%s&code=%s",
+                                email, verificationCode));
 
         if (logger.isInfoEnabled()) {
             logger.info(String.format("Sent code: %s to email: %s",
-                    subscription.getConfirmationCode(), email));
+                    verificationCode, email));
         }
     }
 
@@ -77,7 +93,7 @@ public class SubscriptionService {
         Subscription subscription = subscriptionRepository.findOne(email);
 
         if (subscription != null
-                && subscription.getConfirmationCode().equals(confirmationCode)) {
+                && subscription.getVerificationCode().equals(confirmationCode)) {
             subscription.setConfirmationDate(new Date());
             subscriptionRepository.save(subscription);
             return true;
@@ -96,7 +112,7 @@ public class SubscriptionService {
             return true;
         }
 
-        if (subscription.getConfirmationCode().equals(confirmationCode)) {
+        if (subscription.getVerificationCode().equals(confirmationCode)) {
             reset(email);
             return true;
         } else {
