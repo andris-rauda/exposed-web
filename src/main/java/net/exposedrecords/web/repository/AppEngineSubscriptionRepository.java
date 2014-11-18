@@ -5,8 +5,6 @@ import java.util.Date;
 import net.exposedrecords.web.domain.Subscription;
 import net.exposedrecords.web.domain.SubscriptionRepository;
 
-import org.springframework.stereotype.Repository;
-
 import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.appengine.api.datastore.Entity;
@@ -14,7 +12,6 @@ import com.google.appengine.api.datastore.EntityNotFoundException;
 import com.google.appengine.api.datastore.Key;
 import com.google.appengine.api.datastore.KeyFactory;
 
-@Repository
 public class AppEngineSubscriptionRepository implements SubscriptionRepository {
 
     private static final String ENTITY_NAME = Subscription.class

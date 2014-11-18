@@ -9,7 +9,6 @@ import java.util.Map;
 import net.exposedrecords.web.domain.Subscription;
 import net.exposedrecords.web.domain.SubscriptionRepository;
 
-//@Repository
 public class InMemorySubscriptionRepository implements SubscriptionRepository {
 
     private Map<String, Subscription> map = Collections
