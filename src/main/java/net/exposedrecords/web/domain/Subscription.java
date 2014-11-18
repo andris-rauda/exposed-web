@@ -10,7 +10,7 @@ public class Subscription {
     private String email;
     private String verificationCode;
     private Date creationDate;
-    private Date confirmationDate;
+    private Date verificationDate;
 
     public String getEmail() {
         return email;
@@ -36,15 +36,15 @@ public class Subscription {
         this.creationDate = creationDate;
     }
 
-    public Date getConfirmationDate() {
-        return confirmationDate;
+    public Date getVerificationDate() {
+        return verificationDate;
     }
 
-    public void setConfirmationDate(Date confirmationDate) {
-        this.confirmationDate = confirmationDate;
+    public void setVerificationDate(Date verificationDate) {
+        this.verificationDate = verificationDate;
     }
 
     public boolean isConfirmed() {
-        return confirmationDate != null;
+        return verificationDate != null;
     }
 }

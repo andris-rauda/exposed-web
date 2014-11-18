@@ -94,7 +94,7 @@ public class SubscriptionService {
 
         if (subscription != null
                 && subscription.getVerificationCode().equals(confirmationCode)) {
-            subscription.setConfirmationDate(new Date());
+            subscription.setVerificationDate(new Date());
             subscriptionRepository.save(subscription);
             return true;
         }

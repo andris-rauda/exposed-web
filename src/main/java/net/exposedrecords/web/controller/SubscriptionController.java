@@ -26,6 +26,8 @@ public class SubscriptionController {
     public static final String COOKIE_EMAIL = "email";
     public static final String COOKIE_EMAIL_VERIFIED = "emailVerified";
 
+    private static final int COOKIE_MAX_AGE = 5 * 365 * 24 * 60 * 60; // 5 years
+
     private SubscriptionService subscriptionService;
 
     @Resource
@@ -47,6 +49,7 @@ public class SubscriptionController {
         subscriptionService.add(email);
 
         Cookie cookie = new Cookie(COOKIE_EMAIL, email);
+        cookie.setMaxAge(COOKIE_MAX_AGE);
         response.addCookie(cookie);
 
         return "redirect:demandVinyl";
@@ -67,6 +70,7 @@ public class SubscriptionController {
         if (subscriptionService.verify(email, verificationCode)) {
             Cookie cookie = new Cookie(COOKIE_EMAIL_VERIFIED,
                     Boolean.TRUE.toString());
+            cookie.setMaxAge(COOKIE_MAX_AGE);
             response.addCookie(cookie);
         }
 
