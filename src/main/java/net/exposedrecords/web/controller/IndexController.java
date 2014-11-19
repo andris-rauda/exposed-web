@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.logging.Level;
 
 import javax.annotation.PostConstruct;
+import javax.annotation.Resource;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -13,14 +14,14 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.util.WebUtils;
 
-import com.google.appengine.api.utils.SystemProperty;
+import net.exposedrecords.web.configuration.Environment;
 
 /**
  * Handles all requests for the application index page.
@@ -44,6 +45,8 @@ public class IndexController {
         MENU_ITEMS.add("contact");
     }
 
+    private Environment environment;
+
     private String googleAnalyticsToken;
 
     /**
@@ -58,28 +61,18 @@ public class IndexController {
         }
     }
 
+    @Resource
+    public void setEnvironment(Environment environment) {
+        this.environment = environment;
+    }
+
     @PostConstruct
     public void setupGoogleAnalytics() {
-        // check custom system property
-        String environment = System.getProperty("application.environment");
+        String environmentName = environment.getName();
 
-        if (StringUtils.isEmpty(environment)) {
-
-            // check appengine application version
-            String applicationVersion = SystemProperty.applicationVersion.get();
-
-            if (applicationVersion != null) {
-                String[] applicationVersionSplit = applicationVersion
-                        .split("\\.");
-                assert applicationVersionSplit.length == 2 : "Invalid appengine applicationVersion property";
-
-                environment = applicationVersionSplit[0];
-            }
-        }
-
-        if ("production".equals(environment)) {
+        if ("production".equals(environmentName)) {
             googleAnalyticsToken = "UA-56087455-1";
-        } else if (environment != null && environment.startsWith("test")) {
+        } else if (environmentName != null && environmentName.startsWith("test")) {
             googleAnalyticsToken = "UA-56087455-2";
         }
     }
@@ -149,11 +142,13 @@ public class IndexController {
      * Support robots.
      */
     @RequestMapping(value = "/robots", method = RequestMethod.GET)
+    @ResponseBody
     public String robots() {
         return "robots";
     }
 
-    @RequestMapping(value = "/error", method = RequestMethod.GET)
+    @RequestMapping(value = "/error", method = { RequestMethod.GET,
+            RequestMethod.POST })
     @ExceptionHandler(Exception.class)
     public String error(Exception e) {
         if (logger.isErrorEnabled()) {
