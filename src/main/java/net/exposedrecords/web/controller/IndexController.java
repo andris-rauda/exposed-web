@@ -155,7 +155,7 @@ public class IndexController {
         return "robots";
     }
 
-    @RequestMapping(value = "/error", method = RequestMethod.GET)
+    @RequestMapping(value = "/error", method = { RequestMethod.GET, RequestMethod.POST })
     @ExceptionHandler(Exception.class)
     public String error(Exception e) {
         if (logger.isErrorEnabled()) {
