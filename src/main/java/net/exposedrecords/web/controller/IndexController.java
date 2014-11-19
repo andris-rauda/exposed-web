@@ -121,7 +121,6 @@ public class IndexController {
         }
 
         // fetch email from cookies
-<<<<<<< HEAD
         if ("demandVinyl".equals(page)) {
             Cookie emailCookie = WebUtils.getCookie(request, SubscriptionController.COOKIE_EMAIL);
             if (emailCookie != null) {
@@ -131,18 +130,7 @@ public class IndexController {
             Cookie emailVerifiedCookie = WebUtils.getCookie(request, SubscriptionController.COOKIE_EMAIL);
             if (emailVerifiedCookie != null) {
                 model.addAttribute("emailVerified", emailVerifiedCookie.getValue());
-=======
-        if ("demandVinyl".equals(page) && request.getCookies() != null) {
-            for (Cookie cookie : request.getCookies()) {
-                if (SubscriptionController.COOKIE_EMAIL
-                        .equals(cookie.getName())) {
-                    model.addAttribute("email", cookie.getValue());
-                }
-                if (SubscriptionController.COOKIE_EMAIL_VERIFIED.equals(cookie
-                        .getName())) {
-                    model.addAttribute("emailVerified", cookie.getValue());
-                }
->>>>>>> 3ce752be9fafb57ec3d1d3903b9fb039cb129da9
+
             }
         }
 
