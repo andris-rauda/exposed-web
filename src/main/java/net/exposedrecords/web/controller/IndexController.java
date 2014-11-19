@@ -148,7 +148,6 @@ public class IndexController {
     }
 
     @RequestMapping(value = "/error", method = { RequestMethod.GET, RequestMethod.POST })
-            RequestMethod.POST })
     @ExceptionHandler(Exception.class)
     public String error(Exception e) {
         if (logger.isErrorEnabled()) {
