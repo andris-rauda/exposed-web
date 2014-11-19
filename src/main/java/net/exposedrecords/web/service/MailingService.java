@@ -3,8 +3,10 @@ package net.exposedrecords.web.service;
 import java.io.UnsupportedEncodingException;
 import java.util.Properties;
 
+import javax.mail.Authenticator;
 import javax.mail.Message;
 import javax.mail.MessagingException;
+import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.AddressException;
@@ -19,15 +21,31 @@ public class MailingService {
     public void send(String email, String subject, String message) {
 
         Properties props = new Properties();
-        Session session = Session.getDefaultInstance(props, null);
+        props.put("mail.smtp.auth", "true");
+
+        props.put("mail.smtp.host", "smtp.zoho.com");
+        props.put("mail.smtp.port", "465");
+
+        props.setProperty("mail.pop3.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+        props.setProperty("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+        props.setProperty("mail.smtp.socketFactory.fallback", "false");
+        props.setProperty("mail.smtp.socketFactory.port", "465");
+        props.put("mail.smtp.startssl.enable", "true");
+
+        Authenticator authenticator = new Authenticator() {
+            @Override
+            protected PasswordAuthentication getPasswordAuthentication() {
+                PasswordAuthentication pa = new PasswordAuthentication("noreply@exposedrecords.net",
+                        System.getProperty("application.mailer.password"));
+                return pa;
+            }
+        };
+        Session session = Session.getDefaultInstance(props, authenticator);
 
         try {
             Message msg = new MimeMessage(session);
-            msg.setFrom(new InternetAddress(
-                    "no-reply@exposedrecordsnet.appspotmail.com",
-                    "No-Reply Mailer at Exposed Records"));
-            msg.addRecipient(Message.RecipientType.TO, new InternetAddress(
-                    email, "Mr. User"));
+            msg.setFrom(new InternetAddress("noreply@exposedrecords.net", "NoReply ExposedRecords.NET"));
+            msg.addRecipient(Message.RecipientType.TO, new InternetAddress(email, "Mr. User"));
             msg.setSubject(subject);
             msg.setText(message);
             Transport.send(msg);
