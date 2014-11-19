@@ -2,6 +2,7 @@ package net.exposedrecords.web.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
 
 import javax.annotation.PostConstruct;
 import javax.servlet.http.Cookie;
@@ -29,6 +30,8 @@ public class IndexController {
     private static final Logger logger = LoggerFactory
             .getLogger(IndexController.class);
 
+    private static final java.util.logging.Logger jlog = java.util.logging.Logger.getLogger(IndexController.class.getName());
+    
     // TODO use more dynamic way to validate existing pages (check messages?)
     private static final String NORMAL_ERROR_PAGE = "miss";
 
@@ -117,7 +120,7 @@ public class IndexController {
         }
 
         // fetch email from cookies
-        if ("demandVinyl".equals(page)) {
+        if ("demandVinyl".equals(page) && request.getCookies() != null) {
             for (Cookie cookie : request.getCookies()) {
                 if (SubscriptionController.COOKIE_EMAIL
                         .equals(cookie.getName())) {
@@ -155,6 +158,7 @@ public class IndexController {
         if (logger.isErrorEnabled()) {
             logger.error(e.getMessage(), e);
         }
+        jlog.log(Level.SEVERE, "Unexpected exception", e);
         return "error";
     }
 
