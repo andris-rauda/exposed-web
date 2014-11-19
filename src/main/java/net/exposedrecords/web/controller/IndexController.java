@@ -149,6 +149,7 @@ public class IndexController {
      * Support robots.
      */
     @RequestMapping(value = "/robots", method = RequestMethod.GET)
+    @ResponseBody
     public String robots() {
         return "robots";
     }
