@@ -128,10 +128,9 @@ public class IndexController {
                 model.addAttribute("email", emailCookie.getValue());
             }
 
-            Cookie emailVerifiedCookie = WebUtils.getCookie(request, SubscriptionController.COOKIE_EMAIL);
+            Cookie emailVerifiedCookie = WebUtils.getCookie(request, SubscriptionController.COOKIE_EMAIL_VERIFIED);
             if (emailVerifiedCookie != null) {
                 model.addAttribute("emailVerified", emailVerifiedCookie.getValue());
-
             }
         }
 
