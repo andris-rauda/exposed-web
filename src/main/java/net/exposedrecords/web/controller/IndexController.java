@@ -2,6 +2,7 @@ package net.exposedrecords.web.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.util.WebUtils;
 
 import net.exposedrecords.web.configuration.Environment;
 
@@ -29,6 +31,8 @@ public class IndexController {
     private static final Logger logger = LoggerFactory
             .getLogger(IndexController.class);
 
+    private static final java.util.logging.Logger jlog = java.util.logging.Logger.getLogger(IndexController.class.getName());
+    
     // TODO use more dynamic way to validate existing pages (check messages?)
     private static final String NORMAL_ERROR_PAGE = "miss";
 
@@ -110,15 +114,15 @@ public class IndexController {
 
         // fetch email from cookies
         if ("demandVinyl".equals(page)) {
-            for (Cookie cookie : request.getCookies()) {
-                if (SubscriptionController.COOKIE_EMAIL
-                        .equals(cookie.getName())) {
-                    model.addAttribute("email", cookie.getValue());
-                }
-                if (SubscriptionController.COOKIE_EMAIL_VERIFIED.equals(cookie
-                        .getName())) {
-                    model.addAttribute("emailVerified", cookie.getValue());
-                }
+            Cookie emailCookie = WebUtils.getCookie(request, SubscriptionController.COOKIE_EMAIL);
+            if (emailCookie != null) {
+                model.addAttribute("email", emailCookie.getValue());
+            }
+
+            Cookie emailVerifiedCookie = WebUtils.getCookie(request, SubscriptionController.COOKIE_EMAIL);
+            if (emailVerifiedCookie != null) {
+                model.addAttribute("emailVerified", emailVerifiedCookie.getValue());
+
             }
         }
 
@@ -137,6 +141,7 @@ public class IndexController {
      * Support robots.
      */
     @RequestMapping(value = "/robots", method = RequestMethod.GET)
+    @ResponseBody
     public String robots() {
         return "robots";
     }
@@ -148,6 +153,7 @@ public class IndexController {
         if (logger.isErrorEnabled()) {
             logger.error(e.getMessage(), e);
         }
+        jlog.log(Level.SEVERE, "Unexpected exception", e);
         return "error";
     }
 
