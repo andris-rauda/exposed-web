@@ -5,14 +5,14 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import net.exposedrecords.web.service.SubscriptionService;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import net.exposedrecords.web.service.SubscriptionService;
 
 /**
  * Handles all requests regarding email subscription.
@@ -116,6 +116,9 @@ public class SubscriptionController {
 
     protected void resetCookies(HttpServletRequest request,
             HttpServletResponse response) {
+        if (request.getCookies() == null) {
+            return;
+        }
         for (Cookie cookie : request.getCookies()) {
             if (SubscriptionController.COOKIE_EMAIL.equals(cookie.getName())
                     || SubscriptionController.COOKIE_EMAIL_VERIFIED
