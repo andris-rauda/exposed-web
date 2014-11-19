@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.util.WebUtils;
 
 import com.google.appengine.api.utils.SystemProperty;
 
@@ -118,15 +119,14 @@ public class IndexController {
 
         // fetch email from cookies
         if ("demandVinyl".equals(page)) {
-            for (Cookie cookie : request.getCookies()) {
-                if (SubscriptionController.COOKIE_EMAIL
-                        .equals(cookie.getName())) {
-                    model.addAttribute("email", cookie.getValue());
-                }
-                if (SubscriptionController.COOKIE_EMAIL_VERIFIED.equals(cookie
-                        .getName())) {
-                    model.addAttribute("emailVerified", cookie.getValue());
-                }
+            Cookie emailCookie = WebUtils.getCookie(request, SubscriptionController.COOKIE_EMAIL);
+            if (emailCookie != null) {
+                model.addAttribute("email", emailCookie.getValue());
+            }
+
+            Cookie emailVerifiedCookie = WebUtils.getCookie(request, SubscriptionController.COOKIE_EMAIL);
+            if (emailVerifiedCookie != null) {
+                model.addAttribute("emailVerified", emailVerifiedCookie.getValue());
             }
         }
 
