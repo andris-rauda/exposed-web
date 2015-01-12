@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="utf-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+        <title th:text="${beans.applicationSettings.name}">ExposedRecords.NET - ERROR</title>
+	    <!-- Latest compiled and minified CSS -->
+	    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"/>
+	
+	    <!-- Optional theme -->
+	    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-theme.min.css"/>
+	
+	    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	
+	    <!-- Latest compiled and minified JavaScript -->
+	    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+    </head>
+    <body>
+		<div class="container">
+		    <h1><span th:text="${status}">000</span>: <span th:text="${error}">Error</span></h1>
+		    <div class="alert alert-danger"><span class="glyphicon glyphicon-remove-sign"></span> <span th:text="${message}">Unexpected error has occurred.</span></div>
+		</div>
+    </body>
+</html>
