@@ -21,6 +21,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.util.WebUtils;
 
 import net.exposedrecords.web.configuration.ApplicationSettings;
+import net.exposedrecords.web.domain.Subscription;
+import net.exposedrecords.web.service.SubscriptionService;
 
 
 /**
@@ -45,6 +47,7 @@ public class IndexController {
     }
 
     private String googleAnalyticsToken;
+    private SubscriptionService subscriptionService;
 
     /**
      * Exception thrown when invalid URL has been detected.
@@ -61,6 +64,11 @@ public class IndexController {
     @Resource
     public void setApplicationSettings(ApplicationSettings applicationSettings) {
         this.googleAnalyticsToken = applicationSettings.getGoogleAnalyticsToken();
+    }
+
+    @Resource
+    public void setSubscriptionService(SubscriptionService subscriptionService) {
+        this.subscriptionService = subscriptionService;
     }
 
     @RequestMapping("/")
@@ -106,14 +114,12 @@ public class IndexController {
 
         // fetch email from cookies
         if ("demandVinyl".equals(page)) {
-            Cookie emailCookie = WebUtils.getCookie(request, SubscriptionController.COOKIE_EMAIL);
-            if (emailCookie != null) {
-                model.addAttribute("email", emailCookie.getValue());
-            }
-
-            Cookie emailVerifiedCookie = WebUtils.getCookie(request, SubscriptionController.COOKIE_EMAIL_VERIFIED);
-            if (emailVerifiedCookie != null) {
-                model.addAttribute("emailVerified", emailVerifiedCookie.getValue());
+            Cookie subscriptionIdCookie = WebUtils.getCookie(request, SubscriptionController.COOKIE_SUBSCRIPTION_ID);
+            if (subscriptionIdCookie != null) {
+                String subscriptionId = subscriptionIdCookie.getValue();
+            
+                Subscription subscription = subscriptionService.get(subscriptionId);
+                model.addAttribute("subscription", subscription);
             }
         }
 

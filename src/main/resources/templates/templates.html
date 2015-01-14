@@ -69,7 +69,7 @@
 
           <div th:fragment="demandVinyl" class="inner cover">
             <h1 class="cover-heading">Demand Vinyl</h1>
-            <div th:if="${email == null}">
+            <div th:if="${subscription == null}">
 	            <p class="lead">Our music is not released on vinyl yet, but it will be soon.<br/>
 	            Please, show us your support by subscribing to our mailing list!</p>
 	            <form id="subscriptionForm" action="subscribe" method="post">
@@ -80,26 +80,23 @@
 		                </span>
 		            </p>
 	            </form>
-	            <p th:if="${email != null}">
-	            Thank you! <span th:text="${email}"></span>, verified <span th:text="${emailVerified}"></span>
-	            </p>
 	            <p>Don't worry, we won't spam you with irrelevant messages or give away your address to any 3rd parties, just let you know, when our records hit the stores.</p>
             </div>
-            <div th:if="${email != null and emailVerified == null}">
+            <div th:if="${subscription != null and not subscription.verified}">
                 <p>Thank you for subscribing to our release notes!<br/>
                 Verification link has been sent to email address you provided.
                 </p>
 	            <form id="subscriptionForm" method="post" action="unsubscribe">
-	                <input name="email" type="hidden" th:value="${email}" />
+	                <input name="sId" type="hidden" th:value="${subscription.id}" />
 	                <button class="btn btn-default" type="submit">Unsubscribe</button>
 	            </form>
             </div>
-            <div th:if="${email != null and emailVerified != null}">
+            <div th:if="${subscription != null and subscription.verified}">
                 <p>Our music is not released on vinyl yet, but it will be soon.<br/>
                 We will notify you as soon as our records hit the stores.
                 </p>
 	            <form id="subscriptionForm" method="post" action="unsubscribe">
-	                <input name="email" type="hidden" th:value="${email}" />
+	                <input name="sId" type="hidden" th:value="${subscription.id}" />
 	                <button class="btn btn-default" type="submit">Unubscribe</button>
 	            </form>
             </div>

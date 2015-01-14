@@ -2,15 +2,27 @@ package net.exposedrecords.web.domain;
 
 import java.util.Date;
 
+import org.springframework.data.annotation.Id;
+
 /**
  * 
  * @author drone
  */
 public class Subscription {
+    private String id;
     private String email;
     private String verificationCode;
     private Date creationDate;
     private Date verificationDate;
+
+    @Id
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public String getEmail() {
         return email;
@@ -44,7 +56,7 @@ public class Subscription {
         this.verificationDate = verificationDate;
     }
 
-    public boolean isConfirmed() {
+    public boolean isVerified() {
         return verificationDate != null;
     }
 }

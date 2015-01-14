@@ -6,16 +6,16 @@ import java.util.Date;
 
 import javax.annotation.Resource;
 
-import net.exposedrecords.web.domain.Subscription;
-import net.exposedrecords.web.domain.SubscriptionRepository;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import net.exposedrecords.web.domain.Subscription;
+import net.exposedrecords.web.domain.SubscriptionRepository;
+
 @Service
 public class SubscriptionService {
-    private static final Logger logger = LoggerFactory
+    private static final Logger log = LoggerFactory
             .getLogger(SubscriptionService.class);
 
     private static final int CONFIRMATION_CODE_LENGTH = 16;
@@ -65,32 +65,45 @@ public class SubscriptionService {
         }
     }
 
-    public void add(String email) {
+    /**
+     * @param email
+     * @return id
+     */
+    public String add(String email) {
         Subscription subscription = new Subscription();
         subscription.setCreationDate(new Date());
         subscription.setEmail(email);
         subscription.setVerificationCode(generateConfirmationCode());
-
+        
+        log.info("subscriptionRepository: " + subscriptionRepository);
+        
         subscriptionRepository.save(subscription);
 
+        String id = subscription.getId();
         String verificationCode = subscription.getVerificationCode();
 
         mailingService
                 .send(email,
                         "Subscription verification from ExposedRecords.NET",
                         String.format(
-                                "Open this link to verify: http://exposedrecords.net/verify?email=%s&code=%s",
-                                email, verificationCode));
+                                "Open this link to verify: http://exposedrecords.net/verify?sId=%s&code=%s",
+                                id, verificationCode));
 
-        if (logger.isInfoEnabled()) {
-            logger.info(String.format("Sent code: %s to email: %s",
-                    verificationCode, email));
+        if (log.isInfoEnabled()) {
+            log.info(String.format("Sent id: %s, code: %s to email: %s",
+                    id, verificationCode, email));
         }
+        
+        return id;
     }
 
-    public boolean verify(String email, String confirmationCode) {
+    public Subscription get(String subscriptionId) {
+        return subscriptionRepository.findOne(subscriptionId);
+    }
 
-        Subscription subscription = subscriptionRepository.findOne(email);
+    public boolean verify(String id, String confirmationCode) {
+
+        Subscription subscription = subscriptionRepository.findOne(id);
 
         if (subscription != null
                 && subscription.getVerificationCode().equals(confirmationCode)) {
@@ -101,19 +114,19 @@ public class SubscriptionService {
         return false;
     }
 
-    public void reset(String email) {
-        subscriptionRepository.delete(email);
+    public void reset(String id) {
+        subscriptionRepository.delete(id);
     }
 
-    public boolean reset(String email, String confirmationCode) {
-        Subscription subscription = subscriptionRepository.findOne(email);
+    public boolean reset(String id, String confirmationCode) {
+        Subscription subscription = subscriptionRepository.findOne(id);
 
         if (subscription == null) {
             return true;
         }
 
         if (subscription.getVerificationCode().equals(confirmationCode)) {
-            reset(email);
+            reset(id);
             return true;
         } else {
             return false;

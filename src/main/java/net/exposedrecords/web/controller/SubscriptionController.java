@@ -23,8 +23,7 @@ public class SubscriptionController {
     private static final Logger logger = LoggerFactory
             .getLogger(SubscriptionController.class);
 
-    public static final String COOKIE_EMAIL = "email";
-    public static final String COOKIE_EMAIL_VERIFIED = "emailVerified";
+    public static final String COOKIE_SUBSCRIPTION_ID = "sId";
 
     private static final int COOKIE_MAX_AGE = 5 * 365 * 24 * 60 * 60; // 5 years
 
@@ -46,9 +45,9 @@ public class SubscriptionController {
             logger.info("subscribe: " + email);
         }
 
-        subscriptionService.add(email);
+        String id = subscriptionService.add(email);
 
-        Cookie cookie = new Cookie(COOKIE_EMAIL, email);
+        Cookie cookie = new Cookie(COOKIE_SUBSCRIPTION_ID, id);
         cookie.setMaxAge(COOKIE_MAX_AGE);
         response.addCookie(cookie);
 
@@ -59,19 +58,18 @@ public class SubscriptionController {
      * Remove email from storage, clean up cookie.
      */
     @RequestMapping(value = { "/verify" }, method = RequestMethod.GET)
-    public String verify(@RequestParam("email") String email,
+    public String verify(@RequestParam("sId") String subscriptionId,
             @RequestParam("code") String verificationCode,
             HttpServletResponse response) {
 
         if (logger.isInfoEnabled()) {
-            logger.info("verify: " + email);
+            logger.info("verify: " + subscriptionId);
         }
 
-        if (subscriptionService.verify(email, verificationCode)) {
-            Cookie cookie = new Cookie(COOKIE_EMAIL_VERIFIED,
-                    Boolean.TRUE.toString());
-            cookie.setMaxAge(COOKIE_MAX_AGE);
-            response.addCookie(cookie);
+        boolean success = subscriptionService.verify(subscriptionId, verificationCode);
+
+        if (logger.isInfoEnabled()) {
+            logger.info("verification: " + subscriptionId + ", success: " + success);
         }
 
         return "redirect:demandVinyl";
@@ -81,15 +79,15 @@ public class SubscriptionController {
      * Remove email from storage, clean up cookie.
      */
     @RequestMapping(value = { "/unsubscribe" }, method = RequestMethod.GET)
-    public String unsubscribe(@RequestParam("email") String email,
+    public String unsubscribe(@RequestParam("sId") String subscriptionId,
             @RequestParam("code") String verificationCode,
             HttpServletRequest request, HttpServletResponse response) {
 
         if (logger.isInfoEnabled()) {
-            logger.info("unsubscribe: " + email + ", code: " + verificationCode);
+            logger.info("unsubscribe: " + subscriptionId + ", code: " + verificationCode);
         }
 
-        if (subscriptionService.reset(email, verificationCode)) {
+        if (subscriptionService.reset(subscriptionId, verificationCode)) {
             resetCookies(request, response);
         }
 
@@ -100,14 +98,14 @@ public class SubscriptionController {
      * Remove email from storage, clean up cookie.
      */
     @RequestMapping(value = { "/unsubscribe" }, method = RequestMethod.POST)
-    public String unsubscribe(@RequestParam("email") String email,
+    public String unsubscribe(@RequestParam("sId") String subscriptionId,
             HttpServletRequest request, HttpServletResponse response) {
 
         if (logger.isInfoEnabled()) {
-            logger.info("unsubscribe: " + email);
+            logger.info("unsubscribe: " + subscriptionId);
         }
 
-        subscriptionService.reset(email);
+        subscriptionService.reset(subscriptionId);
 
         resetCookies(request, response);
 
@@ -120,9 +118,7 @@ public class SubscriptionController {
             return;
         }
         for (Cookie cookie : request.getCookies()) {
-            if (SubscriptionController.COOKIE_EMAIL.equals(cookie.getName())
-                    || SubscriptionController.COOKIE_EMAIL_VERIFIED
-                            .equals(cookie.getName())) {
+            if (SubscriptionController.COOKIE_SUBSCRIPTION_ID.equals(cookie.getName())) {
                 cookie.setMaxAge(0);
                 cookie.setValue(null);
                 response.addCookie(cookie);

@@ -9,7 +9,6 @@ public class ApplicationSettings {
     private String name;
     private String googleAnalyticsToken;
     private String mailerPassword;
-    private Persistence persistence;
 
     public String getName() {
         return name;
@@ -33,17 +32,5 @@ public class ApplicationSettings {
 
     public void setMailerPassword(String mailerPassword) {
         this.mailerPassword = mailerPassword;
-    }
-
-    public Persistence getPersistence() {
-        return persistence;
-    }
-
-    public void setPersistence(Persistence persistence) {
-        this.persistence = persistence;
-    }
-
-    public static enum Persistence {
-        InMemory, MongoDB;
     }
 }
