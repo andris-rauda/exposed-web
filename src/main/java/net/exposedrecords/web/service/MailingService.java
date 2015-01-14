@@ -3,6 +3,7 @@ package net.exposedrecords.web.service;
 import java.io.UnsupportedEncodingException;
 import java.util.Properties;
 
+import javax.annotation.Resource;
 import javax.mail.Authenticator;
 import javax.mail.Message;
 import javax.mail.MessagingException;
@@ -15,9 +16,18 @@ import javax.mail.internet.MimeMessage;
 
 import org.springframework.stereotype.Service;
 
+import net.exposedrecords.web.configuration.ApplicationSettings;
+
 @Service
 public class MailingService {
 
+    private String mailerPassword;
+
+    @Resource
+    public void setApplicationSettings(ApplicationSettings applicationSettings) {
+        this.mailerPassword = applicationSettings.getMailerPassword();
+    }
+    
     public void send(String email, String subject, String message) {
 
         Properties props = new Properties();
@@ -36,7 +46,7 @@ public class MailingService {
             @Override
             protected PasswordAuthentication getPasswordAuthentication() {
                 PasswordAuthentication pa = new PasswordAuthentication("noreply@exposedrecords.net",
-                        System.getProperty("application.mailer.password"));
+                        mailerPassword);
                 return pa;
             }
         };

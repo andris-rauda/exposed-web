@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 
-import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -21,14 +20,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.util.WebUtils;
 
-import net.exposedrecords.web.configuration.Environment;
+import net.exposedrecords.web.configuration.ApplicationSettings;
+
 
 /**
  * Handles all requests for the application index page.
  */
 @Controller
 public class IndexController {
-
     private static final Logger logger = LoggerFactory
             .getLogger(IndexController.class);
 
@@ -45,8 +44,6 @@ public class IndexController {
         MENU_ITEMS.add("contact");
     }
 
-    private Environment environment;
-
     private String googleAnalyticsToken;
 
     /**
@@ -60,21 +57,15 @@ public class IndexController {
             super(message);
         }
     }
-
+    
     @Resource
-    public void setEnvironment(Environment environment) {
-        this.environment = environment;
+    public void setApplicationSettings(ApplicationSettings applicationSettings) {
+        this.googleAnalyticsToken = applicationSettings.getGoogleAnalyticsToken();
     }
 
-    @PostConstruct
-    public void setupGoogleAnalytics() {
-        String environmentName = environment.getName();
-
-        if ("production".equals(environmentName)) {
-            googleAnalyticsToken = "UA-56087455-1";
-        } else if (environmentName != null && environmentName.startsWith("test")) {
-            googleAnalyticsToken = "UA-56087455-2";
-        }
+    @RequestMapping("/")
+    String index(Model model) {
+        return "index";
     }
 
     /**
@@ -155,5 +146,4 @@ public class IndexController {
         jlog.log(Level.SEVERE, "Unexpected exception", e);
         return "error";
     }
-
 }
