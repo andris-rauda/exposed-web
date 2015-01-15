@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.dao.DataAccessResourceFailureException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -117,9 +118,13 @@ public class IndexController {
             Cookie subscriptionIdCookie = WebUtils.getCookie(request, SubscriptionController.COOKIE_SUBSCRIPTION_ID);
             if (subscriptionIdCookie != null) {
                 String subscriptionId = subscriptionIdCookie.getValue();
-            
-                Subscription subscription = subscriptionService.get(subscriptionId);
-                model.addAttribute("subscription", subscription);
+                
+                try {
+                    Subscription subscription = subscriptionService.get(subscriptionId);
+                    model.addAttribute("subscription", subscription);
+                } catch (DataAccessResourceFailureException e) {
+                    model.addAttribute("exception", e);
+                }
             }
         }
 

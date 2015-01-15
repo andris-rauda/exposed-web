@@ -69,6 +69,10 @@
 
           <div th:fragment="demandVinyl" class="inner cover">
             <h1 class="cover-heading">Demand Vinyl</h1>
+            <div th:if="${exception != null}" class="alert alert-danger" role="alert">
+                We are currently experiencing problems with our subscription service.<br/>
+                Please be patient and try again later.
+            </div>
             <div th:if="${subscription == null}">
 	            <p class="lead">Our music is not released on vinyl yet, but it will be soon.<br/>
 	            Please, show us your support by subscribing to our mailing list!</p>
