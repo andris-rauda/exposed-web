@@ -6,16 +6,16 @@ import org.springframework.stereotype.Component;
 @Component
 @ConfigurationProperties(prefix = "application")
 public class ApplicationSettings {
-    private String name;
+    private String domain;
     private String googleAnalyticsToken;
     private String mailerPassword;
 
-    public String getName() {
-        return name;
+    public String getDomain() {
+        return domain;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setDomain(String domain) {
+        this.domain = domain;
     }
 
     public String getGoogleAnalyticsToken() {

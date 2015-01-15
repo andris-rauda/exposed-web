@@ -10,6 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import net.exposedrecords.web.configuration.ApplicationSettings;
 import net.exposedrecords.web.domain.Subscription;
 import net.exposedrecords.web.domain.SubscriptionRepository;
 
@@ -22,8 +23,14 @@ public class SubscriptionService {
     private static final char[] HEX = { '0', '1', '2', '3', '4', '5', '6', '7',
             '8', '9', 'a', 'b', 'c', 'd', 'e', 'f' };
 
+    private String applicationDomain;
     private MailingService mailingService;
     private SubscriptionRepository subscriptionRepository;
+
+    @Resource
+    public void setApplicationSettings(ApplicationSettings applicationSettings) {
+        this.applicationDomain = applicationSettings.getDomain();
+    }
 
     @Resource
     public void setMailingService(MailingService mailingService) {
@@ -86,8 +93,8 @@ public class SubscriptionService {
                 .send(email,
                         "Subscription verification from ExposedRecords.NET",
                         String.format(
-                                "Open this link to verify: http://exposedrecords.net/verify?sId=%s&code=%s",
-                                id, verificationCode));
+                                "Open this link to verify: http://%s/verify?sId=%s&code=%s",
+                                applicationDomain, id, verificationCode));
 
         if (log.isInfoEnabled()) {
             log.info(String.format("Sent id: %s, code: %s to email: %s",
