@@ -123,6 +123,9 @@ public class IndexController {
                     Subscription subscription = subscriptionService.get(subscriptionId);
                     model.addAttribute("subscription", subscription);
                 } catch (DataAccessResourceFailureException e) {
+                    Subscription subscriptionStub = new Subscription();
+                    subscriptionStub.setId(subscriptionId);
+                    model.addAttribute("subscription", subscriptionStub);
                     model.addAttribute("exception", e);
                 }
             }
