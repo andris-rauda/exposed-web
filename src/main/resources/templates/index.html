@@ -28,17 +28,15 @@
 
     <div class="site-wrapper">
       <div class="site-wrapper-inner">
-        <div class="cover-container">
+    <div th:replace="templates :: header">header</div>
 
-          <div class="container topMenu" th:replace="templates :: navbar">navbar</div>     
+    <div th:replace="templates :: navbar">navbar</div>     
 
-          <div class="container pageContent" th:replace="templates :: ${templateName}">main content(home, contacts etc)</div> 
+    <div th:replace="templates :: ${templateName}">main content(home, contacts etc)</div> 
 
-          <div class="container footer" th:replace="templates :: footer">footer</div>
-        </div>
+    <div th:replace="templates :: footer">footer</div>
       </div>
     </div>
-
 	<script src="../../js/bootstrap.js" th:src="@{~/js/bootstrap.min.js}"></script>
 
 	<script>

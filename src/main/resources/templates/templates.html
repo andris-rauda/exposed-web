@@ -20,109 +20,159 @@
     <![endif]-->
   </head>
   <body>
-    <div class="site-wrapper">
+      <div class="site-wrapper">
 
       <div class="site-wrapper-inner">
 
-        <div class="cover-container">
-          <div th:fragment="navbar" class="masthead clearfix">
-            <div class="inner">
-              <h3 class="masthead-brand">
-                <img src="../static/images/exposed_logo01_190x190_tr.png" th:src="@{~/images/exposed_logo01_190x190_tr.png}" style="width: 190px;height: 190 px" alt="Exposed Records" title="Exposed Records" />
-              </h3>
-              <ul class="nav masthead-nav" id="mainMenu" th:remove="all-but-first">
-                <li th:each="menuItem : ${menuItems}" th:classappend="${page == menuItem}? 'active'">                
-                  <a href="#home" th:href="@{${menuItem == menuItems[0] ? '~/' : '~/' + menuItem}}" th:text="#{${'theader.nav.' + menuItem}}">Home</a>                
-                </li>
-                <li><a href="#demandVinyl">Demand Vinyl</a></li>
-                <li><a href="#contact">Contact</a></li>
-              </ul>
-            </div>
-          </div>
+      <div th:fragment="header" class="brand">Exposed Records</div>
 
-          <div th:fragment="home" class="inner cover">
-            <h1 class="cover-heading">Exposed Records</h1>
-            <p class="lead"><iframe width="100%" height="166" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/174682724&amp;color=ff5500&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false"></iframe></p>
-            <div class="lead">
-              <div style="float:left">
-                <a href="https://exposedrecords.bandcamp.com/" rel="nofollow" target="_blank">
-                	<img width="32" height="32" src="../static/images/bandcamp.png" th:src="@{~/images/bandcamp.png}"  alt="Follow us on BandCamp" title="Follow us on BandCamp" />
-				</a>
-                <a href="https://www.facebook.com/pages/Exposed-Records/280587362151406" rel="nofollow" target="_blank">
-                	<img width="32" height="32" src="../static/images/facebook.png" th:src="@{~/images/facebook.png}" alt="Follow us on Facebook " title="Follow us on Facebook" />
-				</a>
-                <a href="https://twitter.com/exposed_records" rel="nofollow" target="_blank">
-                	<img width="32" height="32" src="../static/images/twitter.png" th:src="@{~/images/twitter.png}"  alt="Follow us on Twitter" title="Follow us on Twitter" />
-                </a>
-                <a href="https://soundcloud.com/exposedrecords" rel="nofollow" target="_blank">
-                	<img width="32" height="32" src="../static/images/soundcloud.png" th:src="@{~/images/soundcloud.png}" alt="Follow us on SoundCloud" title="Follow us on SoundCloud" />
-                </a>
-                <a href="http://www.mixcloud.com/exposedrecords/" rel="nofollow" target="_blank">
-                    <img width="32" height="32" src="../static/images/mixcloud.png" th:src="@{~/images/mixcloud.png}" alt="Follow us on MixCloud" title="Follow us on MixCloud" />
-                </a>
-              </div>
-              <div style="float:right"> 
-                   <a href="#demandVinyl" th:href="@{~/demandVinyl}" class="btn btn-md btn-success">I want this on vinyl!</a>
-              </div>
+      <nav th:fragment="navbar" class="navbar navbar-default" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <!-- navbar-brand is hidden on larger screens, but visible when the menu is collapsed -->
+                <a class="navbar-brand" href="#home">Exposed Records</a>
             </div>
-          </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav" th:remove="all-but-first">
+                    <li th:each="menuItem : ${menuItems}" th:classappend="${page == menuItem}? 'active'">
+                        <a href="#home" th:href="@{${menuItem == menuItems[0] ? '~/' : '~/' + menuItem}}" th:text="#{${'theader.nav.' + menuItem}}">Home</a>
+                    </li>
+                    <li>
+                        <a href="#subscription">Demand Vinyl</a>
+                    </li>
+                    <li>
+                        <a href="#contact">Contact</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+      </nav>
 
-          <div th:fragment="demandVinyl" class="inner cover">
-            <h1 class="cover-heading">Demand Vinyl</h1>
-            <div th:if="${exception != null}" class="alert alert-danger" role="alert">
-                We are currently experiencing problems with our subscription service.<br/>
-                Please be patient and try again later.
+      <div th:fragment="home" class="container">
+        <div class="row">
+            <div class="box">
+                <div class="col-lg-12">
+                    <hr/>
+                    <h2 class="intro-text text-center">Demo Tracks
+                    </h2>
+                    <hr/>
+                    <p class="lead"><iframe width="100%" height="166" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/174682724&amp;color=ff5500&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false"></iframe></p>
+			        <div class="lead">
+			          <div style="float:left">
+			            <a href="https://exposedrecords.bandcamp.com/" rel="nofollow" target="_blank">
+			            	<img width="32" height="32" src="../static/images/bandcamp.png" th:src="@{~/images/bandcamp.png}"  alt="Follow us on BandCamp" title="Follow us on BandCamp" />
+						</a>
+			            <a href="https://www.facebook.com/pages/Exposed-Records/280587362151406" rel="nofollow" target="_blank">
+			            	<img width="32" height="32" src="../static/images/facebook.png" th:src="@{~/images/facebook.png}" alt="Follow us on Facebook " title="Follow us on Facebook" />
+						</a>
+			            <a href="https://twitter.com/exposed_records" rel="nofollow" target="_blank">
+			            	<img width="32" height="32" src="../static/images/twitter.png" th:src="@{~/images/twitter.png}"  alt="Follow us on Twitter" title="Follow us on Twitter" />
+			            </a>
+			            <a href="https://soundcloud.com/exposedrecords" rel="nofollow" target="_blank">
+			            	<img width="32" height="32" src="../static/images/soundcloud.png" th:src="@{~/images/soundcloud.png}" alt="Follow us on SoundCloud" title="Follow us on SoundCloud" />
+			            </a>
+			            <a href="http://www.mixcloud.com/exposedrecords/" rel="nofollow" target="_blank">
+			                <img width="32" height="32" src="../static/images/mixcloud.png" th:src="@{~/images/mixcloud.png}" alt="Follow us on MixCloud" title="Follow us on MixCloud" />
+			            </a>
+			          </div>
+			          <div style="float:right"> 
+			               <a href="#subscription" th:href="@{~/subscription}" class="btn btn-md btn-success">I want this on vinyl!</a>
+			          </div>
+			        </div>
+			    </div>
             </div>
-            <div th:if="${subscription == null}">
-	            <p class="lead">Our music is not released on vinyl yet, but it will be soon.<br/>
-	            Please, show us your support by subscribing to our mailing list!</p>
-	            <form id="subscriptionForm" action="subscribe" method="post">
-		            <p class="input-group">
-		                <input name="email" type="email" class="form-control" placeholder="your-email@domain.com" required="required" />
-		                <span class="input-group-btn">
-		                   <button class="btn btn-default" type="submit">Subscribe!</button>
-		                </span>
-		            </p>
-	            </form>
-	            <p>Don't worry, we won't spam you with irrelevant messages or give away your address to any 3rd parties, just let you know, when our records hit the stores.</p>
-            </div>
-            <div th:if="${subscription != null and not subscription.verified}">
-                <p>Thank you for subscribing to our release notes!<br/>
-                Verification link has been sent to email address you provided.
-                </p>
-	            <form id="subscriptionForm" method="post" action="unsubscribe">
-	                <input name="sId" type="hidden" th:value="${subscription.id}" />
-	                <button class="btn btn-default" type="submit">Unsubscribe</button>
-	            </form>
-            </div>
-            <div th:if="${subscription != null and subscription.verified}">
-                <p>Our music is not released on vinyl yet, but it will be soon.<br/>
-                We will notify you as soon as our records hit the stores.
-                </p>
-	            <form id="subscriptionForm" method="post" action="unsubscribe">
-	                <input name="sId" type="hidden" th:value="${subscription.id}" />
-	                <button class="btn btn-default" type="submit">Unubscribe</button>
-	            </form>
-            </div>
-          </div>
-
-          <div th:fragment="contact" class="inner cover">
-            <h1 class="cover-heading">Contact</h1>
-            <p class="lead">
-              Email us at <a href="mailto:staff@exposedrecords.net">exposedrecords.net</a>
-            </p>
-          </div>
-
-          <div th:fragment="footer" class="mastfoot">
-            <div class="inner">
-              <p>&copy; ExposedRecords.net 2014</p>
-            </div>
-          </div>
-
         </div>
       </div>
-    </div>
 
+      <div th:fragment="subscription" class="container">
+        <div class="row">
+            <div class="box">
+                <div class="col-lg-12">
+                    <hr/>
+                    <h2 class="intro-text text-center">Vinyl Releases
+                    </h2>
+                    <hr/>
+                    
+        <div th:if="${exception != null}" class="alert alert-danger" role="alert">
+            We are currently experiencing problems with our subscription service.<br/>
+            Please be patient and try again later.
+        </div>
+        <div th:if="${subscription == null}">
+            <p class="lead"><img class="img-responsive img-border img-left" src="../static/images/fzm-Vinyl.Records-pic-22_200x200.jpg" th:src="@{~/images/fzm-Vinyl.Records-pic-22_200x200.jpg}" />We are currently working hard on our first vinyl release.<br/>
+            You can show us your support by subscribing to our mailing list!</p>
+            <form id="subscriptionForm" action="subscribe" method="post">
+	            <p class="input-group">
+	                <input name="email" type="email" class="form-control" placeholder="your-email@domain.com" required="required" />
+	                <span class="input-group-btn">
+	                   <button class="btn btn-default" type="submit">Subscribe!</button>
+	                </span>
+	            </p>
+            </form>
+            <p>Don't worry, we won't spam you with any irrelevant messages or give away your data to any 3rd parties.<br/>
+            This is only for letting you know, when our records hit the stores.</p>
+        </div>
+        <div th:if="${subscription != null and not subscription.verified}">
+            <p>Thank you for subscribing to our release notes!<br/>
+            Verification link has been sent to email address you provided.
+            </p>
+            <form id="subscriptionForm" method="post" action="unsubscribe">
+                <input name="sId" type="hidden" th:value="${subscription.id}" />
+                <button class="btn btn-default" type="submit">Unsubscribe</button>
+            </form>
+        </div>
+        <div th:if="${subscription != null and subscription.verified}">
+            <p>Our music is not released on vinyl yet, but it will be soon.<br/>
+            We will notify you as soon as our records hit the stores.
+            </p>
+            <form id="subscriptionForm" method="post" action="unsubscribe">
+                <input name="sId" type="hidden" th:value="${subscription.id}" />
+                <button class="btn btn-default" type="submit">Unubscribe</button>
+            </form>
+        </div>
+        </div>
+        </div>
+        </div>
+      </div>
+
+      <div th:fragment="contact" class="container">
+          <div class="row">
+            <div class="box">
+                <div class="col-lg-12">
+                    <hr/>
+                    <h2 class="intro-text text-center">Contact
+                    </h2>
+                    <hr/>
+                    
+        <p class="lead">
+          Email us at <a href="mailto:staff@exposedrecords.net">exposedrecords.net</a>
+        </p>
+        
+        </div>
+        </div>
+        </div>
+      </div>
+
+      <footer th:fragment="footer" class="mastfoot">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <p>&copy; ExposedRecords.net 2015</p>
+                </div>
+            </div>
+        </div>
+      </footer>
+      </div>
+    </div>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="../static/js/jquery.js"></script>
 

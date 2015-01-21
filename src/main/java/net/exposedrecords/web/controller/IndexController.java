@@ -9,6 +9,10 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import net.exposedrecords.web.configuration.ApplicationSettings;
+import net.exposedrecords.web.domain.Subscription;
+import net.exposedrecords.web.service.SubscriptionService;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.dao.DataAccessResourceFailureException;
@@ -21,11 +25,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.util.WebUtils;
 
-import net.exposedrecords.web.configuration.ApplicationSettings;
-import net.exposedrecords.web.domain.Subscription;
-import net.exposedrecords.web.service.SubscriptionService;
-
-
 /**
  * Handles all requests for the application index page.
  */
@@ -34,8 +33,9 @@ public class IndexController {
     private static final Logger logger = LoggerFactory
             .getLogger(IndexController.class);
 
-    private static final java.util.logging.Logger jlog = java.util.logging.Logger.getLogger(IndexController.class.getName());
-    
+    private static final java.util.logging.Logger jlog = java.util.logging.Logger
+            .getLogger(IndexController.class.getName());
+
     // TODO use more dynamic way to validate existing pages (check messages?)
     private static final String NORMAL_ERROR_PAGE = "miss";
 
@@ -43,7 +43,7 @@ public class IndexController {
     static {
         MENU_ITEMS = new ArrayList<String>(4);
         MENU_ITEMS.add("home");
-        MENU_ITEMS.add("demandVinyl");
+        MENU_ITEMS.add("subscription");
         MENU_ITEMS.add("contact");
     }
 
@@ -61,10 +61,11 @@ public class IndexController {
             super(message);
         }
     }
-    
+
     @Resource
     public void setApplicationSettings(ApplicationSettings applicationSettings) {
-        this.googleAnalyticsToken = applicationSettings.getGoogleAnalyticsToken();
+        this.googleAnalyticsToken = applicationSettings
+                .getGoogleAnalyticsToken();
     }
 
     @Resource
@@ -115,12 +116,14 @@ public class IndexController {
 
         // fetch email from cookies
         if ("demandVinyl".equals(page)) {
-            Cookie subscriptionIdCookie = WebUtils.getCookie(request, SubscriptionController.COOKIE_SUBSCRIPTION_ID);
+            Cookie subscriptionIdCookie = WebUtils.getCookie(request,
+                    SubscriptionController.COOKIE_SUBSCRIPTION_ID);
             if (subscriptionIdCookie != null) {
                 String subscriptionId = subscriptionIdCookie.getValue();
-                
+
                 try {
-                    Subscription subscription = subscriptionService.get(subscriptionId);
+                    Subscription subscription = subscriptionService
+                            .get(subscriptionId);
                     model.addAttribute("subscription", subscription);
                 } catch (DataAccessResourceFailureException e) {
                     Subscription subscriptionStub = new Subscription();
@@ -151,7 +154,8 @@ public class IndexController {
         return "robots";
     }
 
-    @RequestMapping(value = "/error", method = { RequestMethod.GET, RequestMethod.POST })
+    @RequestMapping(value = "/error", method = { RequestMethod.GET,
+            RequestMethod.POST })
     @ExceptionHandler(Exception.class)
     public String error(Exception e) {
         if (logger.isErrorEnabled()) {
