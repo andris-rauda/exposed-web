@@ -115,7 +115,7 @@ public class IndexController {
         }
 
         // fetch email from cookies
-        if ("demandVinyl".equals(page)) {
+        if ("subscription".equals(page)) {
             Cookie subscriptionIdCookie = WebUtils.getCookie(request,
                     SubscriptionController.COOKIE_SUBSCRIPTION_ID);
             if (subscriptionIdCookie != null) {

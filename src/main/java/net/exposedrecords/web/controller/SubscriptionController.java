@@ -51,7 +51,7 @@ public class SubscriptionController {
         cookie.setMaxAge(COOKIE_MAX_AGE);
         response.addCookie(cookie);
 
-        return "redirect:demandVinyl";
+        return "redirect:subscription";
     }
 
     /**
@@ -72,7 +72,7 @@ public class SubscriptionController {
             logger.info("verification: " + subscriptionId + ", success: " + success);
         }
 
-        return "redirect:demandVinyl";
+        return "redirect:subscription";
     }
 
     /**
@@ -91,7 +91,7 @@ public class SubscriptionController {
             resetCookies(request, response);
         }
 
-        return "redirect:demandVinyl";
+        return "redirect:subscription";
     }
 
     /**
@@ -109,7 +109,7 @@ public class SubscriptionController {
 
         resetCookies(request, response);
 
-        return "redirect:demandVinyl";
+        return "redirect:subscription";
     }
 
     protected void resetCookies(HttpServletRequest request,
