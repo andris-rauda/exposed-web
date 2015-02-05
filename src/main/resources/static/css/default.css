@@ -209,6 +209,10 @@ footer p {
         font-size: 1.25em;
     }
 
+    .navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:hover, .navbar-default .navbar-nav>.active>a:focus {
+        background-color: #D8D8D8;
+    }
+
     .page-content {
         min-height: 408px;
     }
