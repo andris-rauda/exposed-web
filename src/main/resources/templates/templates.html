@@ -108,8 +108,9 @@
             Please be patient and try again later.
         </div>
         <div th:if="${subscription == null}">
-            <p class="lead"><img class="img-responsive img-border img-left" src="../static/images/fzm-Vinyl.Records-pic-22_200x200.jpg" th:src="@{~/images/fzm-Vinyl.Records-pic-22_200x200.jpg}" />We are currently working hard on our first vinyl release.<br/>
-            You can show us your support by subscribing to our mailing list!</p>
+            <p class="lead"><img class="img-responsive img-border img-left" src="../static/images/fzm-Vinyl.Records-pic-22_200x200.jpg" th:src="@{~/images/fzm-Vinyl.Records-pic-22_200x200.jpg}" />
+            We are currently working hard on our first vinyl release.<br/>
+            Show us your support by subscribing to our mailing list!</p>
             <form id="subscriptionForm" action="subscribe" method="post">
 	            <p class="input-group">
 	                <input name="email" type="email" class="form-control" placeholder="your-email@domain.com" required="required" />
@@ -118,11 +119,11 @@
 	                </span>
 	            </p>
             </form>
-            <p>Don't worry, we won't spam you with any irrelevant messages or give away your data to any 3rd parties.<br/>
-            This is only for letting you know, when our records hit the stores.</p>
+            <p><small><i>Don't worry, we won't spam you with any irrelevant messages or give away your data to any 3rd parties.<br/>
+            This is only for letting you know, when our records hit the stores.</i></small></p>
         </div>
         <div th:if="${subscription != null and not subscription.verified}">
-            <p>Thank you for subscribing to our release notes!<br/>
+            <p class="lead"><img class="img-responsive img-border img-left" src="../static/images/fzm-Vinyl.Records-pic-02_200x200.jpg" th:src="@{~/images/fzm-Vinyl.Records-pic-02_200x200.jpg}" />
             Verification link has been sent to email address you provided.
             </p>
             <form id="subscriptionForm" method="post" action="unsubscribe">
@@ -131,7 +132,8 @@
             </form>
         </div>
         <div th:if="${subscription != null and subscription.verified}">
-            <p>Our music is not released on vinyl yet, but it will be soon.<br/>
+            <p class="lead"><img class="img-responsive img-border img-left" src="../static/images/fzm-Vinyl.Records-pic-01g_200x200.jpg" th:src="@{~/images/fzm-Vinyl.Records-pic-01g_200x200.jpg}" />
+            Thany you! You've successfully subscribed to our mailing list.<br/>
             We will notify you as soon as our records hit the stores.
             </p>
             <form id="subscriptionForm" method="post" action="unsubscribe">
