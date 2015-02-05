@@ -204,6 +204,10 @@ footer p {
         font-size: 1.25em;
     }
 
+    .page-content {
+        min-height: 408px;
+    }
+
     .mastfoot {
 		margin-top: 40px;
     }
