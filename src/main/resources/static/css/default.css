@@ -124,6 +124,11 @@ hr {
     margin: 0 auto 0;
 }
 
+div.socialIcons {
+    margin-bottom: 1em;
+}
+
+
 footer {
     background: #fff;
     background: rgba(255,255,255,0.9);
@@ -219,6 +224,14 @@ footer p {
 
     .mastfoot {
 		margin-top: 50px;
+    }
+
+    div.socialIcons {
+        float: left;
+        margin-bottom: 0;
+    }
+    div.subscriptionLink {
+        float: right;
     }
 }
 
