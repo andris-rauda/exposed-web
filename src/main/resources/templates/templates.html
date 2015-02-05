@@ -110,7 +110,9 @@
         <div th:if="${subscription == null}">
             <p class="lead">
 	            <img class="img-responsive img-border img-left" src="../static/images/fzm-Vinyl.Records-pic-22_200x200.jpg" th:src="@{~/images/fzm-Vinyl.Records-pic-22_200x200.jpg}" />
-	            <hr class="visible-xs"/>
+            </p>
+            <hr class="visible-xs"/>
+            <p class="lead">
 	            We are currently working hard on our first vinyl release.<br/>
 	            Show us your support by subscribing to our mailing list!
             </p>
@@ -128,7 +130,9 @@
         <div th:if="${subscription != null and not subscription.verified}">
             <p class="lead">
             	<img class="img-responsive img-border img-left" src="../static/images/fzm-Vinyl.Records-pic-02_200x200.jpg" th:src="@{~/images/fzm-Vinyl.Records-pic-02_200x200.jpg}" />
-            	<hr class="visible-xs"/>
+            </p>
+            <hr class="visible-xs"/>
+            <p class="lead">
             	Verification link has been sent to email address you provided.
             </p>
             <form id="subscriptionForm" method="post" action="unsubscribe">
@@ -139,7 +143,9 @@
         <div th:if="${subscription != null and subscription.verified}">
             <p class="lead">
            		<img class="img-responsive img-border img-left" src="../static/images/fzm-Vinyl.Records-pic-01g_200x200.jpg" th:src="@{~/images/fzm-Vinyl.Records-pic-01g_200x200.jpg}" />
-            	<hr class="visible-xs"/>
+            </p>
+            <hr class="visible-xs"/>
+            <p class="lead">
 	            Thany you! You've successfully subscribed to our mailing list.<br/>
 	            We will notify you as soon as our records hit the stores.
             </p>
