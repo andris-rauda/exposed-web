@@ -57,6 +57,7 @@ hr {
 }
 
 .navbar-brand {
+	cursor: pointer;
     text-transform: uppercase;
     font-weight: 900;
     letter-spacing: 2px;
@@ -178,9 +179,13 @@ footer p {
     }
 
     .navbar {
-        margin-bottom: 60px;
+        margin-bottom: 70px;
         min-height: 0;
     }
+
+	.navbar-brand {
+		cursor: default;
+	}
 
     .navbar-default {
         border: none;
@@ -209,7 +214,7 @@ footer p {
     }
 
     .mastfoot {
-		margin-top: 40px;
+		margin-top: 50px;
     }
 }
 

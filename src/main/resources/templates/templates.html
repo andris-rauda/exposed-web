@@ -29,15 +29,15 @@
       <nav th:fragment="navbar" class="navbar navbar-default" role="navigation">
         <div class="container">
             <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+            <div class="navbar-header" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <button type="button" class="navbar-toggle">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
                 <!-- navbar-brand is hidden on larger screens, but visible when the menu is collapsed -->
-                <a class="navbar-brand" href="#home">Exposed Records</a>
+                <span class="navbar-brand">Exposed Records</span>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -108,9 +108,12 @@
             Please be patient and try again later.
         </div>
         <div th:if="${subscription == null}">
-            <p class="lead"><img class="img-responsive img-border img-left" src="../static/images/fzm-Vinyl.Records-pic-22_200x200.jpg" th:src="@{~/images/fzm-Vinyl.Records-pic-22_200x200.jpg}" />
-            We are currently working hard on our first vinyl release.<br/>
-            Show us your support by subscribing to our mailing list!</p>
+            <p class="lead">
+	            <img class="img-responsive img-border img-left" src="../static/images/fzm-Vinyl.Records-pic-22_200x200.jpg" th:src="@{~/images/fzm-Vinyl.Records-pic-22_200x200.jpg}" />
+	            <hr class="visible-xs"/>
+	            We are currently working hard on our first vinyl release.<br/>
+	            Show us your support by subscribing to our mailing list!
+            </p>
             <form id="subscriptionForm" action="subscribe" method="post">
 	            <p class="input-group">
 	                <input name="email" type="email" class="form-control" placeholder="your-email@domain.com" required="required" />
@@ -123,8 +126,10 @@
             This is only for letting you know, when our records hit the stores.</i></small></p>
         </div>
         <div th:if="${subscription != null and not subscription.verified}">
-            <p class="lead"><img class="img-responsive img-border img-left" src="../static/images/fzm-Vinyl.Records-pic-02_200x200.jpg" th:src="@{~/images/fzm-Vinyl.Records-pic-02_200x200.jpg}" />
-            Verification link has been sent to email address you provided.
+            <p class="lead">
+            	<img class="img-responsive img-border img-left" src="../static/images/fzm-Vinyl.Records-pic-02_200x200.jpg" th:src="@{~/images/fzm-Vinyl.Records-pic-02_200x200.jpg}" />
+            	<hr class="visible-xs"/>
+            	Verification link has been sent to email address you provided.
             </p>
             <form id="subscriptionForm" method="post" action="unsubscribe">
                 <input name="sId" type="hidden" th:value="${subscription.id}" />
@@ -132,9 +137,11 @@
             </form>
         </div>
         <div th:if="${subscription != null and subscription.verified}">
-            <p class="lead"><img class="img-responsive img-border img-left" src="../static/images/fzm-Vinyl.Records-pic-01g_200x200.jpg" th:src="@{~/images/fzm-Vinyl.Records-pic-01g_200x200.jpg}" />
-            Thany you! You've successfully subscribed to our mailing list.<br/>
-            We will notify you as soon as our records hit the stores.
+            <p class="lead">
+           		<img class="img-responsive img-border img-left" src="../static/images/fzm-Vinyl.Records-pic-01g_200x200.jpg" th:src="@{~/images/fzm-Vinyl.Records-pic-01g_200x200.jpg}" />
+            	<hr class="visible-xs"/>
+	            Thany you! You've successfully subscribed to our mailing list.<br/>
+	            We will notify you as soon as our records hit the stores.
             </p>
             <form id="subscriptionForm" method="post" action="unsubscribe">
                 <input name="sId" type="hidden" th:value="${subscription.id}" />
