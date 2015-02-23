@@ -15,7 +15,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>1.2.0.RELEASE</version>
+        <version>1.2.1.RELEASE</version>
     </parent>
 
     <scm>
@@ -27,7 +27,6 @@
     <properties>
         <java.version>1.8</java.version>    
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <appengine.app.version>1</appengine.app.version>
         <substance-repo-url>https://dev.substance.org.lv</substance-repo-url>
     </properties>
 
@@ -40,22 +39,36 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-mongodb</artifactId>
         </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-thymeleaf</artifactId>
         </dependency>
         <dependency>
+            <groupId>org.thymeleaf.extras</groupId>
+            <artifactId>thymeleaf-extras-conditionalcomments</artifactId>
+        </dependency>
+
+        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-tomcat</artifactId>
             <scope>provided</scope>
+        </dependency>
+        
+        <dependency>
+            <groupId>javax.mail</groupId>
+            <artifactId>mail</artifactId>
+            <version>1.4.7</version>
         </dependency>
     </dependencies>
 
@@ -74,6 +87,67 @@
             </plugin>
         </plugins>
     </build>
+    <profiles>
+        <profile>
+            <id>appengine</id>
+            <properties>
+                <appengine.app.version>1</appengine.app.version>
+                <java.version>1.7</java.version>
+            </properties>
+            <dependencies>
+                <dependency>
+                    <groupId>com.google.appengine</groupId>
+                    <artifactId>appengine-api-1.0-sdk</artifactId>
+                    <version>1.9.10</version>
+                </dependency>
+                <dependency>
+                    <groupId>javax.servlet</groupId>
+                    <artifactId>servlet-api</artifactId>
+                    <version>2.5</version>
+                    <scope>provided</scope>
+                </dependency>
+                <dependency>
+                    <groupId>jstl</groupId>
+                    <artifactId>jstl</artifactId>
+                    <version>1.2</version>
+                </dependency>
+
+                <!-- testing -->
+                <dependency>
+                    <groupId>com.google.appengine</groupId>
+                    <artifactId>appengine-testing</artifactId>
+                    <version>1.9.10</version>
+                    <scope>test</scope>
+                </dependency>
+                <dependency>
+                    <groupId>com.google.appengine</groupId>
+                    <artifactId>appengine-api-stubs</artifactId>
+                    <version>1.9.10</version>
+                    <scope>test</scope>
+                </dependency>
+            </dependencies>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>com.google.appengine</groupId>
+                        <artifactId>appengine-maven-plugin</artifactId>
+                        <version>1.9.10</version>
+                        <configuration>
+                            <enableJarClasses>false</enableJarClasses>
+                            <!-- Comment in the below snippet to bind to all IPs instead of just localhost -->
+                            <!-- address>0.0.0.0</address>
+                            <port>8080</port -->
+                            <!-- Comment in the below snippet to enable local debugging with a remove debugger
+                                 like those included with Eclipse or IntelliJ -->
+                            <!-- jvmFlags>
+                              <jvmFlag>-agentlib:jdwp=transport=dt_socket,address=8000,server=y,suspend=n</jvmFlag>
+                            </jvmFlags -->
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 
     <distributionManagement>
         <repository>

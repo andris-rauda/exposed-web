@@ -1,26 +1,43 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-    <head>
-        <meta charset="utf-8"/>
-        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1"/>
 
-        <title th:text="${beans.applicationSettings.name}">ExposedRecords.NET - ERROR</title>
-	    <!-- Latest compiled and minified CSS -->
-	    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"/>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="utf-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+
+<title>Exposed Records - Error</title>
+<meta name="description" content="HTML 5 CSS 3 Spring Form"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+
+</head>
+
+<body>
+	<div id="container">
+        <div id="container">
+          <h1>Unexpected error has happened :(</h1>
+          <div>
+            We apologize for any inconvenience this might cause!
+            Please, try refreshing the page or loading the websites's <a href="/">root</a>.
+          </div>
+          <div>
+            If the problem persists, you can check back later, we will be fixing it.
+            Meanwhile, feel free to browse our <a href="https://www.facebook.com/pages/Exposed-Records/280587362151406">Facebook</a> 
+            and <a href="https://twitter.com/exposed_records">Twitter</a> profiles!
+          </div>
+        </div>
+
+		<footer>
+		</footer>
+	</div>
+	<!--! end of #container -->
+
 	
-	    <!-- Optional theme -->
-	    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-theme.min.css"/>
-	
-	    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-	
-	    <!-- Latest compiled and minified JavaScript -->
-	    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
-    </head>
-    <body>
-		<div class="container">
-		    <h1><span th:text="${status}">000</span>: <span th:text="${error}">Error</span></h1>
-		    <div class="alert alert-danger"><span class="glyphicon glyphicon-remove-sign"></span> <span th:text="${message}">Unexpected error has occurred.</span></div>
-		</div>
-    </body>
+	<script>
+		/*<![CDATA[*/
+		      //Embbeded Javascript    
+		/*]]>*/
+	</script>
+
+</body>
 </html>

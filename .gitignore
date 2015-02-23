@@ -2,3 +2,5 @@
 /target/
 .classpath
 .project
+application.properties
+/bin/
