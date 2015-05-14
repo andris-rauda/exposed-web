@@ -47,7 +47,10 @@
                         <a href="#home" th:href="@{${menuItem == menuItems[0] ? '~/' : '~/' + menuItem}}" th:text="#{${'theader.nav.' + menuItem}}">Home</a>
                     </li>
                     <li>
-                        <a href="#subscription">Demand Vinyl</a>
+                        <a href="#subscription">Releases</a>
+                    </li>
+                    <li>
+                        <a href="#artists">Artists</a>
                     </li>
                     <li>
                         <a href="#contact">Contact</a>
@@ -64,118 +67,201 @@
             <div class="box">
                 <div class="col-lg-12">
                     <hr/>
-                    <h2 class="intro-text text-center">Demo Tracks
+                    <h2 class="intro-text text-center">Welcome
                     </h2>
                     <hr/>
+                    <p class="lead">Welcome to the Exposed Records!</p>
+                    <p class="lead">First of all, let the <b>music</b> speak for itself!<br/>
+                    Check out our latest demos on SoundCloud:</p>
                     <p class="lead"><iframe width="100%" height="166" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/83564418&amp;color=ff5500&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false"></iframe></p>
-			        <div class="lead">
-			          <div class="socialIcons">
-			            <a href="https://exposedrecords.bandcamp.com/" rel="nofollow" target="_blank">
-			            	<img width="32" height="32" src="../static/images/bandcamp.png" th:src="@{~/images/bandcamp.png}"  alt="Follow us on BandCamp" title="Follow us on BandCamp" />
-						</a>
-			            <a href="https://www.facebook.com/pages/Exposed-Records/280587362151406" rel="nofollow" target="_blank">
-			            	<img width="32" height="32" src="../static/images/facebook.png" th:src="@{~/images/facebook.png}" alt="Follow us on Facebook " title="Follow us on Facebook" />
-						</a>
-			            <a href="https://twitter.com/exposed_records" rel="nofollow" target="_blank">
-			            	<img width="32" height="32" src="../static/images/twitter.png" th:src="@{~/images/twitter.png}"  alt="Follow us on Twitter" title="Follow us on Twitter" />
-			            </a>
-			            <a href="https://soundcloud.com/exposedrecords" rel="nofollow" target="_blank">
-			            	<img width="32" height="32" src="../static/images/soundcloud.png" th:src="@{~/images/soundcloud.png}" alt="Follow us on SoundCloud" title="Follow us on SoundCloud" />
-			            </a>
-			            <a href="http://www.mixcloud.com/exposedrecords/" rel="nofollow" target="_blank">
-			                <img width="32" height="32" src="../static/images/mixcloud.png" th:src="@{~/images/mixcloud.png}" alt="Follow us on MixCloud" title="Follow us on MixCloud" />
-			            </a>
-			          </div>
-			          <div class="subscriptionLink"> 
-			               <a href="#subscription" th:href="@{~/subscription}" class="btn btn-md btn-success">I want this on vinyl!</a>
-			          </div>
-			        </div>
-			    </div>
+                    <div class="lead">
+                      <p class="lead">Do you like it? We would appreciate your feedback very much!</p>
+                      <div class="subscriptionLink">
+                           <a href="#subscription" th:href="@{~/subscription}" class="btn btn-lg btn-success">I want this on vinyl!</a>
+                           <a href="#subscription" th:href="@{~/subscription}" class="btn btn-lg btn-primary">Give me more tracks!</a>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="box">
+                <div class="col-lg-12">
+                    <hr/>
+                    <h2 class="intro-text text-center">About us
+                    </h2>
+                    <hr/>
+                    <p class="lead">
+                    Being part of Latvian <i>underground techno</i> scene for over a decade, we believe, that there is a lot of unrealised potential there, just sitting and waiting to be exposed.
+                    </p>
+                    <p class="lead">
+                    Exposed Records is an independent record label aiming at uncovering the best our artists have to offer, conquering bureaucracy and taking it beyond the "easy" digital domain. 
+                    </p>
+                </div>
             </div>
         </div>
       </div>
 
       <div th:fragment="subscription" class="page-content container">
         <div class="row">
-            <div class="box">
+            <div class="box" th:if="${subscription == null}">
                 <div class="col-lg-12">
                     <hr/>
                     <h2 class="intro-text text-center">Vinyl Releases
                     </h2>
                     <hr/>
-                    
-        <div th:if="${exception != null}" class="alert alert-danger" role="alert">
-            We are currently experiencing problems with our subscription service.<br/>
-            Please be patient and try again later.
+                    <p class="lead">
+                        There is nothing released on this label yet! Feel free to check out our <a href="#artists" th:href="@{~/artists}">Artists</a> section and dig for free downloadable music on various digital net-labels we've linked to!<br/>
+                    </p>
+                    <p class="lead">
+                        Meanwhile, we'll be working hard on our first vinyl release on Exposed Records.
+                    </p>
+                </div>
+            </div>
+
+            <div class="box" th:if="${subscription == null}">
+                <div class="col-lg-12">
+                    <hr/>
+                    <h2 class="intro-text text-center">Support us!
+                    </h2>
+                    <hr/>
+                    <p class="lead">
+                        We don't ask for your money!<br/>
+                        However, at this stage it is crucial for us to get some feedback and moral support!
+                    </p>
+                    <p class="lead">
+                        Be honest, post your comments and criticism in any of our social profiles:<br/>
+                    </p>
+                    <div class="socialIcons">
+                        <a href="https://exposedrecords.bandcamp.com/" rel="nofollow" target="_blank">
+                            <img width="32" height="32" src="../static/images/bandcamp.png" th:src="@{~/images/bandcamp.png}"  alt="Follow us on BandCamp" title="Follow us on BandCamp" />
+                        </a>
+                        <a href="https://www.facebook.com/pages/Exposed-Records/280587362151406" rel="nofollow" target="_blank">
+                            <img width="32" height="32" src="../static/images/facebook.png" th:src="@{~/images/facebook.png}" alt="Follow us on Facebook " title="Follow us on Facebook" />
+                        </a>
+                        <a href="https://twitter.com/exposed_records" rel="nofollow" target="_blank">
+                            <img width="32" height="32" src="../static/images/twitter.png" th:src="@{~/images/twitter.png}"  alt="Follow us on Twitter" title="Follow us on Twitter" />
+                        </a>
+                        <a href="https://soundcloud.com/exposedrecords" rel="nofollow" target="_blank">
+                            <img width="32" height="32" src="../static/images/soundcloud.png" th:src="@{~/images/soundcloud.png}" alt="Follow us on SoundCloud" title="Follow us on SoundCloud" />
+                        </a>
+                        <a href="http://www.mixcloud.com/exposedrecords/" rel="nofollow" target="_blank">
+                            <img width="32" height="32" src="../static/images/mixcloud.png" th:src="@{~/images/mixcloud.png}" alt="Follow us on MixCloud" title="Follow us on MixCloud" />
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="box">
+                <div class="col-lg-12">
+                    <hr/>
+                    <h2 class="intro-text text-center">Subscribe!
+                    </h2>
+                    <hr/>
+                    <div th:if="${exception != null}" class="alert alert-danger" role="alert">
+                        We are currently experiencing problems with our subscription service.<br/>
+                        Please be patient and try again later.
+                    </div>
+                    <div th:if="${subscription == null}" class="subscriptionBlock">
+                        <p class="lead">
+                            <img class="img-responsive img-border img-left" src="../static/images/fzm-Vinyl.Records-pic-22_200x200.jpg" th:src="@{~/images/fzm-Vinyl.Records-pic-22_200x200.jpg}" />
+                        </p>
+                        <hr class="visible-xs"/>
+                        <p class="lead">
+                            If you really like our music, don't miss out!<br/>
+                            Subscribe to our mailing list and we will notify you, when our records hit the stores!
+                        </p>
+                        <form id="subscriptionForm" action="subscribe" method="post">
+                            <p class="input-group">
+                                <input name="email" type="email" class="form-control" placeholder="your-email@domain.com" required="required" />
+                                <span class="input-group-btn">
+                                   <button class="btn btn-default" type="submit">Subscribe!</button>
+                                </span>
+                            </p>
+                        </form>
+                    </div>
+                    <div th:if="${subscription != null and not subscription.verified}" class="subscriptionBlock">
+                        <p class="lead">
+                            <img class="img-responsive img-border img-left" src="../static/images/fzm-Vinyl.Records-pic-02_200x200.jpg" th:src="@{~/images/fzm-Vinyl.Records-pic-02_200x200.jpg}" />
+                        </p>
+                        <hr class="visible-xs"/>
+                        <p class="lead">
+                            Verification link has been sent to email address you provided.
+                        </p>
+                        <form id="subscriptionForm" method="post" action="unsubscribe">
+                            <input name="sId" type="hidden" th:value="${subscription.id}" />
+                            <button class="btn btn-default" type="submit">Unsubscribe</button>
+                        </form>
+                    </div>
+                    <div th:if="${subscription != null and subscription.verified}" class="subscriptionBlock">
+                        <p class="lead">
+                               <img class="img-responsive img-border img-left" src="../static/images/fzm-Vinyl.Records-pic-01g_200x200.jpg" th:src="@{~/images/fzm-Vinyl.Records-pic-01g_200x200.jpg}" />
+                        </p>
+                        <hr class="visible-xs"/>
+                        <p class="lead">
+                            Thank you! You've successfully subscribed to our mailing list.<br/>
+                            We will notify you as soon as our records hit the stores.
+                        </p>
+                        <form id="subscriptionForm" method="post" action="unsubscribe">
+                            <input name="sId" type="hidden" th:value="${subscription.id}" />
+                            <button class="btn btn-default" type="submit">Unubscribe</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div th:if="${subscription == null}">
-            <p class="lead">
-	            <img class="img-responsive img-border img-left" src="../static/images/fzm-Vinyl.Records-pic-22_200x200.jpg" th:src="@{~/images/fzm-Vinyl.Records-pic-22_200x200.jpg}" />
-            </p>
-            <hr class="visible-xs"/>
-            <p class="lead">
-	            We are currently working hard on our first vinyl release.<br/>
-	            Show us your support by subscribing to our mailing list!
-            </p>
-            <form id="subscriptionForm" action="subscribe" method="post">
-	            <p class="input-group">
-	                <input name="email" type="email" class="form-control" placeholder="your-email@domain.com" required="required" />
-	                <span class="input-group-btn">
-	                   <button class="btn btn-default" type="submit">Subscribe!</button>
-	                </span>
-	            </p>
-            </form>
-            <p><small><i>Don't worry, we won't spam you with any irrelevant messages or give away your data to any 3rd parties.<br/>
-            This is only for letting you know, when our records hit the stores.</i></small></p>
-        </div>
-        <div th:if="${subscription != null and not subscription.verified}">
-            <p class="lead">
-            	<img class="img-responsive img-border img-left" src="../static/images/fzm-Vinyl.Records-pic-02_200x200.jpg" th:src="@{~/images/fzm-Vinyl.Records-pic-02_200x200.jpg}" />
-            </p>
-            <hr class="visible-xs"/>
-            <p class="lead">
-            	Verification link has been sent to email address you provided.
-            </p>
-            <form id="subscriptionForm" method="post" action="unsubscribe">
-                <input name="sId" type="hidden" th:value="${subscription.id}" />
-                <button class="btn btn-default" type="submit">Unsubscribe</button>
-            </form>
-        </div>
-        <div th:if="${subscription != null and subscription.verified}">
-            <p class="lead">
-           		<img class="img-responsive img-border img-left" src="../static/images/fzm-Vinyl.Records-pic-01g_200x200.jpg" th:src="@{~/images/fzm-Vinyl.Records-pic-01g_200x200.jpg}" />
-            </p>
-            <hr class="visible-xs"/>
-            <p class="lead">
-	            Thank you! You've successfully subscribed to our mailing list.<br/>
-	            We will notify you as soon as our records hit the stores.
-            </p>
-            <form id="subscriptionForm" method="post" action="unsubscribe">
-                <input name="sId" type="hidden" th:value="${subscription.id}" />
-                <button class="btn btn-default" type="submit">Unubscribe</button>
-            </form>
-        </div>
-        </div>
-        </div>
+      </div>
+
+      <div th:fragment="artists" class="page-content container">
+          <div class="row">
+              <div class="box">
+                  <div class="col-lg-12">
+                      <hr/>
+                      <h2 class="intro-text text-center">Artists
+                      </h2>
+                      <hr/>
+                      <p class="lead">
+                        Artist 1
+                      </p>
+                      <p class="lead">
+                        Artist 2
+                      </p>
+                  </div>
+             </div>
         </div>
       </div>
 
       <div th:fragment="contact" class="page-content container">
           <div class="row">
-            <div class="box">
-                <div class="col-lg-12">
-                    <hr/>
-                    <h2 class="intro-text text-center">Contact
-                    </h2>
-                    <hr/>
-                    
-        <p class="lead">
-          We operate from several locations in <b>Riga, Latvia</b>. Official address is yet to be determined.<br/>
-          Email us at <a href="mailto:staff@exposedrecords.net">exposedrecords.net</a>
-        </p>
-        
-        </div>
-        </div>
+              <div class="box">
+                  <div class="col-lg-12">
+                      <hr/>
+                      <h2 class="intro-text text-center">Contact
+                      </h2>
+                      <hr/>
+                      <p class="lead">
+                        We operate from several locations in <b>Riga, Latvia</b>. Official address is yet to be determined.<br/>
+                        Email us at <a href="mailto:staff@exposedrecords.net">exposedrecords.net</a><br />
+                      </p>
+                      <p class="lead">
+                        Follow any of the social profiles:
+                      </p>
+                      <div class="socialIcons">
+                        <a href="https://exposedrecords.bandcamp.com/" rel="nofollow" target="_blank">
+                            <img width="32" height="32" src="../static/images/bandcamp.png" th:src="@{~/images/bandcamp.png}"  alt="Follow us on BandCamp" title="Follow us on BandCamp" />
+                        </a>
+                        <a href="https://www.facebook.com/pages/Exposed-Records/280587362151406" rel="nofollow" target="_blank">
+                            <img width="32" height="32" src="../static/images/facebook.png" th:src="@{~/images/facebook.png}" alt="Follow us on Facebook " title="Follow us on Facebook" />
+                        </a>
+                        <a href="https://twitter.com/exposed_records" rel="nofollow" target="_blank">
+                            <img width="32" height="32" src="../static/images/twitter.png" th:src="@{~/images/twitter.png}"  alt="Follow us on Twitter" title="Follow us on Twitter" />
+                        </a>
+                        <a href="https://soundcloud.com/exposedrecords" rel="nofollow" target="_blank">
+                            <img width="32" height="32" src="../static/images/soundcloud.png" th:src="@{~/images/soundcloud.png}" alt="Follow us on SoundCloud" title="Follow us on SoundCloud" />
+                        </a>
+                        <a href="http://www.mixcloud.com/exposedrecords/" rel="nofollow" target="_blank">
+                            <img width="32" height="32" src="../static/images/mixcloud.png" th:src="@{~/images/mixcloud.png}" alt="Follow us on MixCloud" title="Follow us on MixCloud" />
+                        </a>
+                      </div>
+                  </div>
+             </div>
         </div>
       </div>
 
@@ -198,43 +284,43 @@
     <script th:remove="all">
     // <![CDATA[
     $(document).ready(function() {
-    	// show/hide on navbar click
+        // show/hide on navbar click
         $('#mainMenu li a').click(function() {
-        	updateActiveMenuItem($(this));
-        	showContentByLink($(this).attr('href'));
-        	//$('.active').text($(this).text());
+            updateActiveMenuItem($(this));
+            showContentByLink($(this).attr('href'));
+            //$('.active').text($(this).text());
         });
 
         // show item form hash or fallback to home
         hash = window.location.hash || '#home';        
-   		$('#mainMenu li a[href=' + hash + ']').click();
+           $('#mainMenu li a[href=' + hash + ']').click();
     });
 
     isContentDiv = function() {
-    	return $(this).attr('th:fragment')
-    	    && $(this).attr('th:fragment') != 'header'
-    		&& $(this).attr('th:fragment') != 'navbar'
-   			&& $(this).attr('th:fragment') != 'footer'
+        return $(this).attr('th:fragment')
+            && $(this).attr('th:fragment') != 'header'
+            && $(this).attr('th:fragment') != 'navbar'
+               && $(this).attr('th:fragment') != 'footer'
     };
 
     // set as active clicked item
     updateActiveMenuItem = function(item) {
-		item.parent().siblings().removeClass('active');
-		item.parent().addClass('active');
-		/*$('.navbar-collapse').collapse('hide');*/
+        item.parent().siblings().removeClass('active');
+        item.parent().addClass('active');
+        /*$('.navbar-collapse').collapse('hide');*/
     };
 
-	// show selected content item and hide others
+    // show selected content item and hide others
     showContentByLink = function(lnk) {
-    	$('div').filter(isContentDiv).each(function() {       		
-    	     if ('#' + $(this).attr('th:fragment') == lnk) {        	    	 
-    	    	 $(this).show();	 
-    	     } else {
-    	    	 $(this).hide();
-    	     }
-        });    	
+        $('div').filter(isContentDiv).each(function() {               
+             if ('#' + $(this).attr('th:fragment') == lnk) {                     
+                 $(this).show();     
+             } else {
+                 $(this).hide();
+             }
+        });        
     }
- 	// ]]>
+     // ]]>
     </script>
 
     <!-- Include all compiled plugins (below), or include individual files as needed -->
