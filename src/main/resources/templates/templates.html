@@ -47,10 +47,10 @@
                         <a href="#home" th:href="@{${menuItem == menuItems[0] ? '~/' : '~/' + menuItem}}" th:text="#{${'theader.nav.' + menuItem}}">Home</a>
                     </li>
                     <li>
-                        <a href="#subscription">Releases</a>
+                        <a href="#artists">Artists</a>
                     </li>
                     <li>
-                        <a href="#artists">Artists</a>
+                        <a href="#subscription">Releases</a>
                     </li>
                     <li>
                         <a href="#contact">Contact</a>
@@ -78,7 +78,7 @@
                       <p class="lead">Do you like it? We would appreciate your feedback very much!</p>
                       <div class="subscriptionLink">
                            <a href="#subscription" th:href="@{~/subscription}" class="btn btn-lg btn-success">I want this on vinyl!</a>
-                           <a href="#subscription" th:href="@{~/subscription}" class="btn btn-lg btn-primary">Give me more tracks!</a>
+                           <a href="#artists" th:href="@{~/artists}" class="btn btn-lg btn-primary">Give me more tracks!</a>
                       </div>
                     </div>
                 </div>
