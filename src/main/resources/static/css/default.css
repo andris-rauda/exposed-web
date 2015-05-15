@@ -108,9 +108,9 @@ hr {
 
 .intro-text {
     text-transform: uppercase;
-    font-size: 1.25em;
+    font-size: 1.30em;
     font-weight: 400;
-    letter-spacing: 1px;
+    letter-spacing: 2px;
 }
 
 .img-border {
@@ -211,7 +211,7 @@ footer p {
         float: none;
         margin: 0 auto;
         table-layout: fixed;
-        font-size: 1.25em;
+        font-size: 1.30em;
     }
 
     .navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:hover, .navbar-default .navbar-nav>.active>a:focus {
