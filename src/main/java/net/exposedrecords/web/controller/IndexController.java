@@ -43,6 +43,7 @@ public class IndexController {
     static {
         MENU_ITEMS = new ArrayList<String>(4);
         MENU_ITEMS.add("home");
+        MENU_ITEMS.add("artists");
         MENU_ITEMS.add("subscription");
         MENU_ITEMS.add("contact");
     }
