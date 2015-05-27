@@ -128,6 +128,16 @@ ul {
     margin: 0 auto 0;
 }
 
+.artistDescription {
+	text-align: center;
+}
+
+ul.artistDescription {
+	padding-left: 0;
+	font-size: 16px;
+	line-height: 1.4;
+}
+
 div.socialIcons {
     margin-bottom: 20px;
 }
@@ -229,6 +239,10 @@ footer p {
     .mastfoot {
 		margin-top: 30px;
     }
+
+	.artistDescription {
+		text-align: start;
+	}
 
 /*
     div.socialIcons {
