@@ -103,11 +103,16 @@
       <div th:fragment="subscription" class="page-content container">
         <div class="row">
             <div class="box" th:if="${subscription == null}">
-                <div class="col-lg-12">
-                    <hr/>
-                    <h2 class="intro-text text-center">Vinyl Releases
-                    </h2>
-                    <hr/>
+                <hr/>
+                <h2 class="intro-text text-center">Vinyl Releases
+                </h2>
+                <hr/>
+                <div class="col-lg-4 col-md-4 visible-lg visible-md">
+                    <p class="lead">
+                        <img class="img-responsive img-border img-left" src="../static/images/vinyl.jpg" th:src="@{~/images/vinyl.jpg}" style="width:450px" />
+                    </p>
+                </div>
+                <div class="col-lg-8 col-md-8">
                     <p class="lead">
                         There is nothing released on this label yet! Feel free to check out our <a href="#artists" th:href="@{~/artists}">Artists</a> section and dig for free downloadable music on various digital net-labels we've linked to!<br/>
                     </p>
