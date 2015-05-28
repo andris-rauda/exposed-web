@@ -169,7 +169,7 @@
                         We are currently experiencing problems with our subscription service.<br/>
                         Please be patient and try again later.
                     </div>
-                    <div th:if="${subscription == null}" class="subscriptionBlock">
+                    <div th:if="${subscription == null and #httpServletRequest.getParameter('action') != 'subscriptionRejected'}" class="subscriptionBlock">
                         <p class="lead">
                             <img class="img-responsive img-border img-left" src="../static/images/releases/fzm-Vinyl.Records-pic-22_200x200.jpg" th:src="@{~/images/releases/fzm-Vinyl.Records-pic-22_200x200.jpg}" />
                         </p>
@@ -187,13 +187,26 @@
                             </p>
                         </form>
                     </div>
-                    <div th:if="${subscription != null and not subscription.verified}" class="subscriptionBlock">
+                    <div th:if="${subscription != null and not subscription.verified and #httpServletRequest.getParameter('action') != 'subscriptionRejected'}" class="subscriptionBlock">
                         <p class="lead">
                             <img class="img-responsive img-border img-left" src="../static/images/releases/fzm-Vinyl.Records-pic-02_200x200.jpg" th:src="@{~/images/releases/fzm-Vinyl.Records-pic-02_200x200.jpg}" />
                         </p>
                         <hr class="visible-xs"/>
                         <p class="lead">
                             Verification link has been sent to the email address you provided.
+                        </p>
+                        <form id="subscriptionForm" method="post" action="unsubscribe">
+                            <input name="sId" type="hidden" th:value="${subscription.id}" />
+                            <button class="btn btn-default" type="submit">Unsubscribe</button>
+                        </form>
+                    </div>
+                    <div th:if="${#httpServletRequest.getParameter('action') == 'subscriptionRejected'}" class="subscriptionBlock">
+                        <p class="lead">
+                            <img class="img-responsive img-border img-left" src="../static/images/releases/fzm-Vinyl.Records-pic-03_200x200.jpg" th:src="@{~/images/releases/fzm-Vinyl.Records-pic-03_200x200.jpg}" />
+                        </p>
+                        <hr class="visible-xs"/>
+                        <p class="lead">
+                            Verification link appears to be invalid! Are you sure, you copied it properly?
                         </p>
                         <form id="subscriptionForm" method="post" action="unsubscribe">
                             <input name="sId" type="hidden" th:value="${subscription.id}" />
