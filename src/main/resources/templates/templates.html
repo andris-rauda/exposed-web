@@ -102,32 +102,32 @@
 
       <div th:fragment="subscription" class="page-content container">
         <div class="row">
-            <div class="box" th:if="${subscription == null}">
+            <div class="box">
                 <hr/>
                 <h2 class="intro-text text-center">Vinyl Releases
                 </h2>
                 <hr/>
-                <div class="col-lg-4 col-md-4 visible-lg visible-md">
+                <div class="col-md-4 visible-md col-lg-4 visible-lg">
                     <p class="lead">
-                        <img class="img-responsive img-border img-left" src="../static/images/releases/vinyl.jpg" th:src="@{~/images/releases/vinyl.jpg}" style="width:450px" />
+                        <img class="img-responsive img-border img-left" src="../static/images/releases/vinyl.jpg" th:src="@{~/images/releases/vinyl.jpg}" />
                     </p>
                 </div>
-                <div class="col-lg-8 col-md-8">
+                <div class="col-md-8 col-lg-8">
                     <p class="lead">
-                        There is nothing released on this label yet! Feel free to check out our <a href="#artists" th:href="@{~/artists}">Artists</a> section and dig for free downloadable music on various digital net-labels we've linked to!<br/>
+                        We are working hard on our first vinyl release on <b>Exposed Records</b>.
                     </p>
                     <p class="lead">
-                        Meanwhile, we'll be working hard on our first vinyl release on Exposed Records.
+                        Meanwhile, feel free to check out our <a href="#artists" th:href="@{~/artists}">Artists</a> section and dig for free downloadable music on various digital net-labels we're linked to!
                     </p>
                 </div>
             </div>
 
-            <div class="box" th:if="${subscription == null}">
-                <div class="col-lg-12">
-                    <hr/>
-                    <h2 class="intro-text text-center">Support us!
-                    </h2>
-                    <hr/>
+            <div class="box">
+                <hr/>
+                <h2 class="intro-text text-center">Support us!
+                </h2>
+                <hr/>
+                <div class="col-md-9 col-lg-9">
                     <p class="lead">
                         We don't ask for your money!<br/>
                         However, at this stage it is crucial for us to get some feedback and moral support!
@@ -152,6 +152,11 @@
                             <img width="32" height="32" src="../static/images/mixcloud.png" th:src="@{~/images/mixcloud.png}" alt="Follow us on MixCloud" title="Follow us on MixCloud" />
                         </a>
                     </div>
+                </div>
+                <div class="col-md-3 visible-md col-lg-3 visible-lg">
+                    <p class="lead">
+                        <img class="img-responsive img-left" src="../static/images/releases/comments.png" th:src="@{~/images/releases/comments.png}" />
+                    </p>
                 </div>
             </div>
             <div class="box">
@@ -188,7 +193,7 @@
                         </p>
                         <hr class="visible-xs"/>
                         <p class="lead">
-                            Verification link has been sent to email address you provided.
+                            Verification link has been sent to the email address you provided.
                         </p>
                         <form id="subscriptionForm" method="post" action="unsubscribe">
                             <input name="sId" type="hidden" th:value="${subscription.id}" />
