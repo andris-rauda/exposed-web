@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import net.exposedrecords.web.service.SubscriptionService;
 
@@ -39,7 +40,7 @@ public class SubscriptionController {
      */
     @RequestMapping(value = { "/subscribe" }, method = RequestMethod.POST)
     public String subscribe(@RequestParam("email") String email,
-            HttpServletResponse response) {
+            HttpServletResponse response, RedirectAttributes redirectAttributes) {
 
         if (logger.isInfoEnabled()) {
             logger.info("subscribe: " + email);
@@ -51,6 +52,8 @@ public class SubscriptionController {
         cookie.setMaxAge(COOKIE_MAX_AGE);
         response.addCookie(cookie);
 
+        redirectAttributes.addAttribute("action", "verificationSent");
+        
         return "redirect:subscription";
     }
 
@@ -60,7 +63,7 @@ public class SubscriptionController {
     @RequestMapping(value = { "/verify" }, method = RequestMethod.GET)
     public String verify(@RequestParam("sId") String subscriptionId,
             @RequestParam("code") String verificationCode,
-            HttpServletResponse response) {
+            HttpServletResponse response, RedirectAttributes redirectAttributes) {
 
         if (logger.isInfoEnabled()) {
             logger.info("verify: " + subscriptionId);
@@ -71,6 +74,8 @@ public class SubscriptionController {
         if (logger.isInfoEnabled()) {
             logger.info("verification: " + subscriptionId + ", success: " + success);
         }
+
+        redirectAttributes.addAttribute("action", success ? "subscriptionVerified" : "subscriptionRejected");
 
         return "redirect:subscription";
     }

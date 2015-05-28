@@ -102,7 +102,7 @@
 
       <div th:fragment="subscription" class="page-content container">
         <div class="row">
-            <div class="box">
+            <div class="box" th:if="${param.action == null}">
                 <hr/>
                 <h2 class="intro-text text-center">Vinyl Releases
                 </h2>
@@ -122,7 +122,7 @@
                 </div>
             </div>
 
-            <div class="box">
+            <div class="box" th:if="${param.action == null}">
                 <hr/>
                 <h2 class="intro-text text-center">Support us!
                 </h2>
