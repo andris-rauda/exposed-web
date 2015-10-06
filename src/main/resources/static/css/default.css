@@ -66,7 +66,7 @@ hr {
 .navbar-nav {
     text-transform: uppercase;
     font-weight: 400;
-    letter-spacing: 3px;
+    letter-spacing: 4px;
 }
 
 .navbar-default .navbar-nav>li>a:hover,.navbar-default .navbar-nav>li>a:focus {
@@ -125,7 +125,7 @@ ul {
     text-transform: uppercase;
     font-size: 1.30em;
     font-weight: 400;
-    letter-spacing: 2px;
+    letter-spacing: 3px;
 }
 
 .img-border {
@@ -240,7 +240,14 @@ footer p {
         margin-bottom: 70px;
         min-height: 0;
     }
-
+    .navbar-default .container {
+        padding-left: 0;
+        padding-right: 0;
+    }
+	.navbar-collapse {
+        padding-left: 0;
+        padding-right: 0;
+	}
 	.navbar-brand {
 		cursor: default;
 	}
@@ -250,7 +257,14 @@ footer p {
         background: #fff;
         background: rgba(255,255,255,0.9);
     }
-
+    .navbar-nav {
+    	width: 100%;
+    	margin: 0 0;
+    }
+    .nav>li {
+        width: 25%;
+        text-align: center;
+    }
     .nav>li>a {
         padding: 35px;
     }
