@@ -5,8 +5,10 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.web.SpringBootServletInitializer;
+import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
+@ComponentScan({ "net.exposedrecords.web", "lv.org.substance.joversight.client"})
 public class Application extends SpringBootServletInitializer {
     private static final Log log = LogFactory.getLog(Application.class);
 

@@ -70,6 +70,19 @@
             <artifactId>mail</artifactId>
             <version>1.4.7</version>
         </dependency>
+
+        <dependency>
+            <groupId>lv.org.substance.joversight</groupId>
+            <artifactId>joversight-web</artifactId>
+            <version>0.4</version>
+            <classifier>client</classifier>
+            <exclusions>
+               <exclusion>
+                   <groupId>org.springframework.boot</groupId>
+                   <artifactId>spring-boot-starter-security</artifactId>
+               </exclusion>
+            </exclusions>
+        </dependency>
     </dependencies>
 
     <build>
