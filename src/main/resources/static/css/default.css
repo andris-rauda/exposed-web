@@ -53,9 +53,10 @@ hr {
 }
 
 a:hover {
-    transition: all .2s ease-in-out;
-    -moz-transition: all .2s ease-in-out;
-    -webkit-transition: all .2s ease-in-out;
+    transition: color 200ms ease-in-out;
+    -o-transition: color 200ms ease-in-out;
+    -moz-transition: color 200ms ease-in-out;
+    -webkit-transition: color 200ms ease-in-out;
 }
 
 .socialIcons a:hover {
@@ -85,12 +86,14 @@ a:hover {
 .navbar-default .navbar-nav>li>a:hover,.navbar-default .navbar-nav>li>a:focus {
     color: #555;
     background-color: #f0f0f0;
+    transition: all 250ms;
+    -o-transition: all 250ms;
+    -moz-transition: all 250ms;
     -webkit-transition: all 250ms;
-	 -moz-transition: all 250ms;
-	 transition: all 250ms;
-	 -webkit-transition-delay: 20ms;
-	 -moz-transition-delay: 20ms;
-	 transition-delay: 20ms;
+	transition-delay: 20ms;
+	-o-transition-delay: 20ms;
+	-moz-transition-delay: 20ms;
+	-webkit-transition-delay: 20ms;
 }
 
 .img-full {
