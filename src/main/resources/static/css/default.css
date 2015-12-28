@@ -53,10 +53,10 @@ hr {
 }
 
 a:hover {
-    transition: color 200ms ease-in-out;
-    -o-transition: color 200ms ease-in-out;
-    -moz-transition: color 200ms ease-in-out;
-    -webkit-transition: color 200ms ease-in-out;
+    transition: all 200ms ease-in-out;
+    -o-transition: all 200ms ease-in-out;
+    -moz-transition: all 200ms ease-in-out;
+    -webkit-transition: all 200ms ease-in-out;
 }
 
 .socialIcons a:hover {
