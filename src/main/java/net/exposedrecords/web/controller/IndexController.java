@@ -9,10 +9,6 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import net.exposedrecords.web.configuration.ApplicationSettings;
-import net.exposedrecords.web.domain.Subscription;
-import net.exposedrecords.web.service.SubscriptionService;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.dao.DataAccessResourceFailureException;
@@ -22,8 +18,11 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.util.WebUtils;
+
+import net.exposedrecords.web.configuration.ApplicationSettings;
+import net.exposedrecords.web.domain.Subscription;
+import net.exposedrecords.web.service.SubscriptionService;
 
 /**
  * Handles all requests for the application index page.
@@ -149,8 +148,7 @@ public class IndexController {
     /**
      * Support robots.
      */
-    @RequestMapping(value = "/robots", method = RequestMethod.GET)
-    @ResponseBody
+    @RequestMapping(value = "/robots.txt", method = RequestMethod.GET)
     public String robots() {
         return "robots";
     }
