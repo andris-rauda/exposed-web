@@ -100,11 +100,12 @@ a:hover {
     min-width: 100%;
 }
 
+/*
 .brand-before,
 .brand-name {
     text-transform: capitalize;
 }
-
+*/
 .brand-before {
     margin: 15px 0;
 }
@@ -234,6 +235,8 @@ footer p {
         font-weight: 700;
         line-height: normal;
         color: #fff;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
     }
 
   /* Start the vertical centering */
@@ -344,5 +347,9 @@ footer p {
         -moz-background-size: cover;
         background-size: cover;
         -o-background-size: cover;
+    }
+
+    .brand {
+        letter-spacing: 0.1em;
     }
 }
