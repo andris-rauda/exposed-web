@@ -54,7 +54,7 @@ public class SubscriptionController {
 
         redirectAttributes.addAttribute("action", "verificationSent");
         
-        return "redirect:subscription";
+        return "redirect:releases";
     }
 
     /**
@@ -77,7 +77,7 @@ public class SubscriptionController {
 
         redirectAttributes.addAttribute("action", success ? "subscriptionVerified" : "subscriptionRejected");
 
-        return "redirect:subscription";
+        return "redirect:releases";
     }
 
     /**
@@ -96,7 +96,7 @@ public class SubscriptionController {
             resetCookies(request, response);
         }
 
-        return "redirect:subscription";
+        return "redirect:releases";
     }
 
     /**
@@ -114,7 +114,7 @@ public class SubscriptionController {
 
         resetCookies(request, response);
 
-        return "redirect:subscription";
+        return "redirect:releases";
     }
 
     protected void resetCookies(HttpServletRequest request,

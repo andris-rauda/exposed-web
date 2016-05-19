@@ -43,7 +43,7 @@ public class IndexController {
         MENU_ITEMS = new ArrayList<String>(4);
         MENU_ITEMS.add("home");
         MENU_ITEMS.add("artists");
-        MENU_ITEMS.add("subscription");
+        MENU_ITEMS.add("releases");
         MENU_ITEMS.add("contact");
     }
 
@@ -115,7 +115,7 @@ public class IndexController {
         }
 
         // fetch email from cookies
-        if ("subscription".equals(page)) {
+        if ("releases".equals(page)) {
             Cookie subscriptionIdCookie = WebUtils.getCookie(request,
                     SubscriptionController.COOKIE_SUBSCRIPTION_ID);
             if (subscriptionIdCookie != null) {

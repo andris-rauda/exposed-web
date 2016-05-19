@@ -50,7 +50,7 @@
                         <a href="#artists">Artists</a>
                     </li>
                     <li>
-                        <a href="#subscription">Releases</a>
+                        <a href="#releases">Releases</a>
                     </li>
                     <li>
                         <a href="#contact">Contact</a>
@@ -78,7 +78,7 @@
                     <div class="lead">
                       <p class="lead">What do you think? We would appreciate your feedback very much!</p>
                       <div class="subscriptionLink">
-                           <a href="#subscription" th:href="@{~/subscription}" class="btn btn-lg btn-success">I want this on vinyl!</a>
+                           <a href="#releases" th:href="@{~/releases#vinyl}" class="btn btn-lg btn-success">I want this on vinyl!</a>
                            <a href="#artists" th:href="@{~/artists}" class="btn btn-lg btn-primary">Give me more tracks!</a>
                       </div>
                     </div>
@@ -101,9 +101,9 @@
         </div>
       </div>
 
-      <div th:fragment="subscription" class="page-content container">
+      <div th:fragment="releases" class="page-content container">
         <div class="row">
-            <div class="box" th:if="${param.action == null}">
+            <div id="vinyl" class="box" th:if="${param.action == null}">
                 <hr/>
                 <h2 class="intro-text text-center">Vinyl Releases
                 </h2>
