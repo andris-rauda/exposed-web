@@ -52,6 +52,10 @@ hr {
     border-color: #999999;
 }
 
+a {
+	white-space: nowrap;
+}
+
 a:hover {
     transition: all 200ms ease-in-out;
     -o-transition: all 200ms ease-in-out;
