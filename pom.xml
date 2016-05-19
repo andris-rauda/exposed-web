@@ -4,7 +4,7 @@
 
     <groupId>net.exposedrecords</groupId>
     <artifactId>exposed-web</artifactId>
-    <version>0.12-SNAPSHOT</version>
+    <version>0.12</version>
 
     <name>ExposedRecords.NET WEB</name>
     <description>
