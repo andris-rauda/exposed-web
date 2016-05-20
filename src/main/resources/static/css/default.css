@@ -58,7 +58,13 @@ a:hover {
     -moz-transition: all 200ms ease-in-out;
     -webkit-transition: all 200ms ease-in-out;
 }
-
+a:hover>img {
+	opacity: 0.75;
+    transition: all 200ms ease-in-out;
+    -o-transition: all 200ms ease-in-out;
+    -moz-transition: all 200ms ease-in-out;
+    -webkit-transition: all 200ms ease-in-out;
+}
 .socialIcons a:hover {
 	text-decoration: none;
 }
