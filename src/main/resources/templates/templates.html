@@ -116,24 +116,8 @@
                     <p class="lead">
                         We are working hard on our first vinyl release on <b>Exposed Records</b>.
                     </p>
-                    <p class="lead">
-                        Meanwhile, feel free to check out our <a href="#artists" th:href="@{~/artists}">Artists</a> section and dig for free downloadable music on various digital net-labels we're linked to!
-                    </p>
-                </div>
-            </div>
-
-            <div class="box" th:if="${param.action == null}">
-                <hr/>
-                <h2 class="intro-text text-center">Support us!
-                </h2>
-                <hr/>
-                <div class="col-md-9 col-lg-9">
-                    <p class="lead">
-                        We don't ask for your money!<br/>
-                        However, at this stage it is crucial for us to get some feedback and moral support!
-                    </p>
                     <p class="lead socialIcons">
-                        Be honest, post your comments and criticism on our 
+                        Support us! Check out our 
                         <a href="https://soundcloud.com/exposedrecords" rel="nofollow" target="_blank">
                             <img width="24" height="24" src="../static/images/social_buttons/soundcloud.png" th:src="@{~/images/social_buttons/soundcloud.png}" alt="Follow us on SoundCloud" title="Follow us on SoundCloud" />
                             <span>SoundCloud</span>
@@ -143,12 +127,10 @@
                             <img width="24" height="24" src="../static/images/social_buttons/facebook.png" th:src="@{~/images/social_buttons/facebook.png}" alt="Follow us on Facebook " title="Follow us on Facebook" />
                             <span>Facebook</span>
                         </a>
-                        page to keep track of our progress.
+                        page to keep track on our progress.
                     </p>
-                </div>
-                <div class="col-md-3 visible-md col-lg-3 visible-lg">
                     <p class="lead">
-                        <img class="img-responsive img-left" src="../static/images/releases/comments.png" th:src="@{~/images/releases/comments.png}" />
+                       Which tracks would <i>you</i> like to get your hands on?
                     </p>
                 </div>
             </div>
@@ -355,6 +337,9 @@
                      		</a>
                      	  </li>
                       </ul>
+                  </div>
+                  <div class="lead col-xs-12">
+                    <i>Feel free to check dig for free music on various digital net-labels we're linked to!</i>
                   </div>
              </div>
               <div class="box">
