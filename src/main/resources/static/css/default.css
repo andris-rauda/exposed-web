@@ -6,7 +6,7 @@
 
 body {
     font-family: "Open Sans","Helvetica Neue",Helvetica,Arial,sans-serif;
-    background: url('../images/background_small.jpg') no-repeat center center fixed;
+    background: url('../images/background_small.jpg') no-repeat center top fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     background-size: cover;
@@ -227,7 +227,7 @@ footer p {
 
 @media screen and (min-width:768px) {
     body {
-        background: url('../images/background_medium.jpg') no-repeat center center fixed;
+        background: url('../images/background_medium.jpg') no-repeat center top fixed;
         -webkit-background-size: cover;
         -moz-background-size: cover;
         background-size: cover;
@@ -352,7 +352,7 @@ footer p {
 
 @media screen and (min-width:1200px) {
     body {
-        background: url('../images/background_large.jpg') no-repeat center center fixed;
+        background: url('../images/background_large.jpg') no-repeat center top fixed;
         -webkit-background-size: cover;
         -moz-background-size: cover;
         background-size: cover;
