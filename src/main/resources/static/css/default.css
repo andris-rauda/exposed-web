@@ -225,6 +225,12 @@ footer p {
     padding: 50px 0;
 }
 
+@media 
+(-webkit-min-device-pixel-ratio: 2), 
+(min-resolution: 192dpi) { 
+    /* Retina-specific stuff here */
+}
+
 @media screen and (min-width:768px) {
     body {
         background: url('../images/background_medium.jpg') no-repeat center top fixed;
