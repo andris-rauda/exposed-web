@@ -157,42 +157,41 @@ ul {
     margin: 0 auto 0;
 }
 
-home div.release-buttons {
+.home div.release-buttons {
     text-align: center;
 }
 
-home div.release-buttons a {
+.home div.release-buttons a {
     margin-bottom: 5px;
 }
 
-.artistDescription {
+.artists .description {
 	text-align: center;
 }
 
-ul.artistDescription {
+.artists ul.links {
+	text-align: center;
 	padding-left: 0;
 	font-size: 16px;
 	line-height: 1.4;
     margin-top: -13px;
 }
-ul.artistDescription li a {
+.artists ul.links li a {
 	vertical-align: middle;
 	padding: 2px 0 0 21px;
 }
 
-ul.artistDescription li a img {
+.artists ul.links li a img {
 	width: 16px;
 	height: 16px;
 	margin: 0 2px 0 0;
 	display: inline-block;
 }
 
-.contact div.social-links {
-    margin-bottom: 20px;
-}
-.contact div.social-links ul {
+.contact ul.links {
 	font-size: 20px;
 	line-height: 1.9;
+    margin-bottom: 20px;
 }
 
 .icon {
@@ -425,14 +424,17 @@ footer p {
         min-height: 408px;
     }
 
-	.artistDescription {
+	.artists .description {
 		text-align: start;
 	}
+	.artists ul.links {
+        text-align: start;
+    }
 
     div.subscription {
         clear: both;
     }
-	home div.release-buttons a {
+	.home div.release-buttons a {
 	    margin-bottom: 0;
 	}
 }
