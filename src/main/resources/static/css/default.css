@@ -187,23 +187,12 @@ ul.artistDescription li a img {
 	display: inline-block;
 }
 
-div.socialIcons {
+.contact div.social-links {
     margin-bottom: 20px;
 }
-
-.socialIcons ul {
+.contact div.social-links ul {
 	font-size: 20px;
 	line-height: 1.9;
-}
-
-.socialIcons ul li a img {
-	vertical-align: top;
-	margin: 4px 0 0 0;
-}
-
-.socialIcons a img {
-	vertical-align: top;
-	margin: 2px 0 0 0;
 }
 
 .icon {
