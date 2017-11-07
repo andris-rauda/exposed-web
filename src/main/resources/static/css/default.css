@@ -215,6 +215,10 @@ div.socialIcons {
 	margin: 2px 0 0 0;
 }
 
+.icon-small-residentadvisor {
+	background: transparent url(../images/social_icons/residentadvisor.png) scroll no-repeat left center;
+}
+
 footer {
     background: #fff;
     background: rgba(255,255,255,0.9);
@@ -229,6 +233,10 @@ footer p {
 (-webkit-min-device-pixel-ratio: 2), 
 (min-resolution: 192dpi) { 
     /* Retina-specific stuff here */
+    .icon-small-residentadvisor {
+	    background: transparent url(../images/social_icons/residentadvisor_32x32.png) scroll no-repeat left center;
+	    background-size: 16px 16px;
+	}
 }
 
 @media screen and (min-width:768px) {
