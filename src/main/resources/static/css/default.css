@@ -234,40 +234,40 @@ div.socialIcons {
 }
 
 .icon-s-808:before {
-    background: transparent url(../images/social_icons/808.png) scroll no-repeat left center; 
+    background: transparent url(../images/social_icons/808_16.png) scroll no-repeat left center; 
 }
 .icon-s-bandcamp:before {
-    background: transparent url(../images/social_icons/bandcamp.png) scroll no-repeat left center; 
+    background: transparent url(../images/social_icons/bandcamp_16.png) scroll no-repeat left center; 
 }
 .icon-s-discogs:before {
-    background: transparent url(../images/social_icons/discogs.ico) scroll no-repeat left center; 
+    background: transparent url(../images/social_icons/discogs_16.ico) scroll no-repeat left center; 
 }
 .icon-s-facebook:before {
-    background: transparent url(../images/social_icons/facebook.ico) scroll no-repeat left center; 
+    background: transparent url(../images/social_icons/facebook_16.ico) scroll no-repeat left center; 
 }
 .icon-s-gargan:before {
-    background: transparent url(../images/social_icons/gargan.ico) scroll no-repeat left center; 
+    background: transparent url(../images/social_icons/gargan_16.ico) scroll no-repeat left center; 
 }
 .icon-s-mixcloud:before {
-    background: transparent url(../images/social_icons/mixcloud.ico) scroll no-repeat left center; 
+    background: transparent url(../images/social_icons/mixcloud_16.ico) scroll no-repeat left center; 
 }
 .icon-s-myspace:before {
-    background: transparent url(../images/social_icons/myspace.ico) scroll no-repeat left center; 
+    background: transparent url(../images/social_icons/myspace_16.ico) scroll no-repeat left center; 
 }
 .icon-s-residentadvisor:before {
-    background: transparent url(../images/social_icons/residentadvisor.png) scroll no-repeat left center; 
+    background: transparent url(../images/social_icons/residentadvisor_16.png) scroll no-repeat left center; 
 }
 .icon-s-soundcloud:before {
-    background: transparent url(../images/social_icons/soundcloud.png) scroll no-repeat left center; 
+    background: transparent url(../images/social_icons/soundcloud_16.png) scroll no-repeat left center; 
 }
 .icon-s-substance:before {
-    background: transparent url(../images/social_icons/substance.ico) scroll no-repeat left center; 
+    background: transparent url(../images/social_icons/substance_16.ico) scroll no-repeat left center; 
 }
 .icon-s-twitter:before {
-    background: transparent url(../images/social_icons/twitter.ico) scroll no-repeat left center; 
+    background: transparent url(../images/social_icons/twitter_16.ico) scroll no-repeat left center; 
 }
 .icon-s-youtube:before {
-    background: transparent url(../images/social_icons/youtube.ico) scroll no-repeat left center; 
+    background: transparent url(../images/social_icons/youtube_16.ico) scroll no-repeat left center; 
 }
 
 .icon-m-facebook:before {
@@ -308,7 +308,7 @@ footer p {
 (min-resolution: 192dpi) { 
     /* Retina-specific stuff here */
     a.icon-s-residentadvisor:before {
-	    background: transparent url(../images/social_icons/residentadvisor_32x32.png) scroll no-repeat left center / 16px 16px;
+	    background: transparent url(../images/social_icons/residentadvisor_32.png) scroll no-repeat left center / 16px 16px;
 	}
 }
 
