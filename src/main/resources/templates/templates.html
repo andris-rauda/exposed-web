@@ -62,7 +62,7 @@
         <!-- /.container -->
       </nav>
 
-      <div th:fragment="home" class="page-content container">
+      <div th:fragment="home" class="page-content container home">
         <div class="row">
             <div class="box">
                 <div class="col-lg-12">
@@ -76,7 +76,7 @@
                     <p class="lead"><iframe width="100%" height="450" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/330505789&amp;color=ff5500&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false"></iframe></p>
                     <div class="lead">
                       <p class="lead">What do you think? We would appreciate your feedback very much!</p>
-                      <div class="subscriptionLink">
+                      <div class="release-buttons">
                            <a href="#releases" th:href="@{~/releases#vinyl}" class="btn btn-lg btn-success">I want this on vinyl!</a>
                            <a href="#releases" th:href="@{~/releases}" class="btn btn-lg btn-primary">Give me more tracks!</a>
                       </div>
@@ -160,7 +160,7 @@
                         We are currently experiencing problems with our subscription service.<br/>
                         Please be patient and try again later.
                     </div>
-                    <div th:if="${subscription == null and #httpServletRequest.getParameter('action') != 'subscriptionRejected'}" class="subscriptionBlock">
+                    <div th:if="${subscription == null and #httpServletRequest.getParameter('action') != 'subscriptionRejected'}" class="subscription">
                         <p class="lead">
                             <img class="img-responsive img-border img-left" src="../static/images/releases/fzm-Vinyl.Records-pic-22_200x200.jpg" th:src="@{~/images/releases/fzm-Vinyl.Records-pic-22_200x200.jpg}" />
                         </p>
@@ -178,7 +178,7 @@
                             </p>
                         </form>
                     </div>
-                    <div th:if="${subscription != null and not subscription.verified and #httpServletRequest.getParameter('action') != 'subscriptionRejected'}" class="subscriptionBlock">
+                    <div th:if="${subscription != null and not subscription.verified and #httpServletRequest.getParameter('action') != 'subscriptionRejected'}" class="subscription">
                         <p class="lead">
                             <img class="img-responsive img-border img-left" src="../static/images/releases/fzm-Vinyl.Records-pic-02_200x200.jpg" th:src="@{~/images/releases/fzm-Vinyl.Records-pic-02_200x200.jpg}" />
                         </p>
@@ -191,7 +191,7 @@
                             <button class="btn btn-default" type="submit">Unsubscribe</button>
                         </form>
                     </div>
-                    <div th:if="${#httpServletRequest.getParameter('action') == 'subscriptionRejected'}" class="subscriptionBlock">
+                    <div th:if="${#httpServletRequest.getParameter('action') == 'subscriptionRejected'}" class="subscription">
                         <p class="lead">
                             <img class="img-responsive img-border img-left" src="../static/images/releases/fzm-Vinyl.Records-pic-03_200x200.jpg" th:src="@{~/images/releases/fzm-Vinyl.Records-pic-03_200x200.jpg}" />
                         </p>
@@ -204,7 +204,7 @@
                             <button class="btn btn-default" type="submit">Unsubscribe</button>
                         </form>
                     </div>
-                    <div th:if="${subscription != null and subscription.verified}" class="subscriptionBlock">
+                    <div th:if="${subscription != null and subscription.verified}" class="subscription">
                         <p class="lead">
                                <img class="img-responsive img-border img-left" src="../static/images/releases/fzm-Vinyl.Records-pic-01g_200x200.jpg" th:src="@{~/images/releases/fzm-Vinyl.Records-pic-01g_200x200.jpg}" />
                         </p>

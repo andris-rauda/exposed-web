@@ -157,11 +157,11 @@ ul {
     margin: 0 auto 0;
 }
 
-div.subscriptionLink {
+home div.release-buttons {
     text-align: center;
 }
 
-div.subscriptionLink a {
+home div.release-buttons a {
     margin-bottom: 5px;
 }
 
@@ -425,20 +425,14 @@ footer p {
         min-height: 408px;
     }
 
-/*
-    .mastfoot {
-		margin-top: 30px;
-    }
-*/
-
 	.artistDescription {
 		text-align: start;
 	}
 
-    div.subscriptionBlock {
+    div.subscription {
         clear: both;
     }
-	div.subscriptionLink a {
+	home div.release-buttons a {
 	    margin-bottom: 0;
 	}
 }
