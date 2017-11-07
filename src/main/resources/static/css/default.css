@@ -271,26 +271,26 @@ div.socialIcons {
 }
 
 .icon-m-facebook:before {
-    background: transparent url(../images/social_buttons/facebook.png) scroll no-repeat left center / 24px 24px; 
+    background: transparent url(../images/social_icons/facebook_32.png) scroll no-repeat left center / 24px 24px; 
 }
 .icon-m-soundcloud:before {
-    background: transparent url(../images/social_buttons/soundcloud.png) scroll no-repeat left center / 24px 24px; 
+    background: transparent url(../images/social_icons/soundcloud_32.png) scroll no-repeat left center / 24px 24px; 
 }
 
 .icon-l-bandcamp:before {
-    background: transparent url(../images/social_buttons/bandcamp.png) scroll no-repeat left center; 
+    background: transparent url(../images/social_icons/bandcamp_32.png) scroll no-repeat left center; 
 }
 .icon-l-facebook:before {
-    background: transparent url(../images/social_buttons/facebook.png) scroll no-repeat left center; 
+    background: transparent url(../images/social_icons/facebook_32.png) scroll no-repeat left center; 
 }
 .icon-l-mixcloud:before {
-    background: transparent url(../images/social_buttons/mixcloud.png) scroll no-repeat left center; 
+    background: transparent url(../images/social_icons/mixcloud_32.png) scroll no-repeat left center; 
 }
 .icon-l-soundcloud:before {
-    background: transparent url(../images/social_buttons/soundcloud.png) scroll no-repeat left center; 
+    background: transparent url(../images/social_icons/soundcloud_32.png) scroll no-repeat left center; 
 }
 .icon-l-twitter:before {
-    background: transparent url(../images/social_buttons/twitter.png) scroll no-repeat left center; 
+    background: transparent url(../images/social_icons/twitter_32.png) scroll no-repeat left center; 
 }
 
 footer {
@@ -307,8 +307,23 @@ footer p {
 (-webkit-min-device-pixel-ratio: 2), 
 (min-resolution: 192dpi) { 
     /* Retina-specific stuff here */
-    a.icon-s-residentadvisor:before {
-	    background: transparent url(../images/social_icons/residentadvisor_32.png) scroll no-repeat left center / 16px 16px;
+	.icon-s-bandcamp:before {
+	    background: transparent url(../images/social_icons/bandcamp_32.png) scroll no-repeat left center / 16px 16px;
+	}
+	.icon-s-facebook:before {
+	    background: transparent url(../images/social_icons/facebook_32.png) scroll no-repeat left center / 16px 16px;
+	}
+	.icon-s-mixcloud:before {
+	    background: transparent url(../images/social_icons/mixcloud_32.png) scroll no-repeat left center / 16px 16px;
+	}
+    .icon-s-residentadvisor:before {
+        background: transparent url(../images/social_icons/residentadvisor_32.png) scroll no-repeat left center / 16px 16px;
+    }
+	.icon-s-soundcloud:before {
+	    background: transparent url(../images/social_icons/soundcloud_32.png) scroll no-repeat left center / 16px 16px;
+	}
+	.icon-s-twitter:before {
+	    background: transparent url(../images/social_icons/twitter_32.png) scroll no-repeat left center / 16px 16px;
 	}
 }
 
