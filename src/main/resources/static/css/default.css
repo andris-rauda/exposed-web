@@ -424,6 +424,11 @@ footer p {
         min-height: 408px;
     }
 
+    .artists .picture img {
+        width: 250px;
+        height: 250px;
+        margin-top: 5px;
+    }
 	.artists .description {
 		text-align: start;
 	}
