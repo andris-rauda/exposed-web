@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.dao.DataAccessResourceFailureException;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -46,13 +47,20 @@ public class SubscriptionController {
             logger.info("subscribe: " + email);
         }
 
-        String id = subscriptionService.add(email);
-
-        Cookie cookie = new Cookie(COOKIE_SUBSCRIPTION_ID, id);
-        cookie.setMaxAge(COOKIE_MAX_AGE);
-        response.addCookie(cookie);
-
-        redirectAttributes.addAttribute("action", "verificationSent");
+        try {
+            String id = subscriptionService.add(email);
+    
+            Cookie cookie = new Cookie(COOKIE_SUBSCRIPTION_ID, id);
+            cookie.setMaxAge(COOKIE_MAX_AGE);
+            response.addCookie(cookie);
+    
+            redirectAttributes.addAttribute("action", "verificationSent");
+        } catch (DataAccessResourceFailureException e) {
+            if (logger.isErrorEnabled()) {
+                logger.error("subscription verification failed: " + e.getMessage());
+            }
+            redirectAttributes.addAttribute("action", "subscriptionFailed");
+        }
         
         return "redirect:releases";
     }
@@ -69,13 +77,20 @@ public class SubscriptionController {
             logger.info("verify: " + subscriptionId);
         }
 
-        boolean success = subscriptionService.verify(subscriptionId, verificationCode);
+        try {
+            boolean success = subscriptionService.verify(subscriptionId, verificationCode);
 
-        if (logger.isInfoEnabled()) {
-            logger.info("verification: " + subscriptionId + ", success: " + success);
+            if (logger.isInfoEnabled()) {
+                logger.info("verification: " + subscriptionId + ", success: " + success);
+            }
+    
+            redirectAttributes.addAttribute("action", success ? "subscriptionVerified" : "subscriptionRejected");
+        } catch (DataAccessResourceFailureException e) {
+            if (logger.isErrorEnabled()) {
+                logger.error("subscription verification failed: " + e.getMessage());
+            }
+            redirectAttributes.addAttribute("action", "subscriptionFailed");
         }
-
-        redirectAttributes.addAttribute("action", success ? "subscriptionVerified" : "subscriptionRejected");
 
         return "redirect:releases";
     }
@@ -104,14 +119,20 @@ public class SubscriptionController {
      */
     @RequestMapping(value = { "/unsubscribe" }, method = RequestMethod.POST)
     public String unsubscribe(@RequestParam("sId") String subscriptionId,
-            HttpServletRequest request, HttpServletResponse response) {
+            HttpServletRequest request, HttpServletResponse response, RedirectAttributes redirectAttributes) {
 
         if (logger.isInfoEnabled()) {
             logger.info("unsubscribe: " + subscriptionId);
         }
 
-        subscriptionService.reset(subscriptionId);
-
+        try {
+            subscriptionService.reset(subscriptionId);
+        } catch (DataAccessResourceFailureException e) {
+            if (logger.isErrorEnabled()) {
+                logger.error("subscription verification failed: " + e.getMessage());
+            }
+            redirectAttributes.addAttribute("action", "subscriptionFailed");
+        }
         resetCookies(request, response);
 
         return "redirect:releases";

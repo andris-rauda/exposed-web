@@ -156,11 +156,11 @@
                     <h2 class="intro-text text-center">Subscribe!
                     </h2>
                     <hr/>
-                    <div th:if="${exception != null}" class="alert alert-danger" role="alert">
+                    <div th:if="${exception != null or #httpServletRequest.getParameter('action') == 'subscriptionFailed'}" class="alert alert-danger" role="alert">
                         We are currently experiencing problems with our subscription service.<br/>
                         Please be patient and try again later.
                     </div>
-                    <div th:if="${subscription == null and #httpServletRequest.getParameter('action') != 'subscriptionRejected'}" class="subscribe">
+                    <div th:if="${subscription == null and #httpServletRequest.getParameter('action') != 'subscriptionRejected' and #httpServletRequest.getParameter('action') != 'subscriptionFailed'}" class="subscribe">
                         <figure class="img-responsive img-left">
                             <img src="../static/images/releases/email.svg" th:src="@{~/images/releases/email.svg}" />
                             <figcaption><span class="glyphicon glyphicon-circle-arrow-right"></span></figcaption>
@@ -202,7 +202,7 @@
                         <p class="lead">
                             Verification link appears to be invalid! Are you sure, you copied it properly?
                         </p>
-                        <form id="subscriptionForm" method="post" action="unsubscribe">
+                        <form id="subscriptionForm" method="post" action="unsubscribe" th:if="${subscription != null}">
                             <input name="sId" type="hidden" th:value="${subscription.id}" />
                             <button class="btn btn-default" type="submit">Unsubscribe</button>
                         </form>
