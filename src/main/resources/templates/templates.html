@@ -100,9 +100,9 @@
         </div>
       </div>
 
-      <div th:fragment="releases" class="page-content container">
+      <div th:fragment="releases" class="page-content container releases">
         <div class="row">
-            <div class="box" th:if="${param.action == null}">
+            <div class="box digital" th:if="${param.action == null}">
                 <div class="col-lg-12">
                     <hr/>
                     <h2 class="intro-text text-center">Digital Releases
@@ -124,15 +124,15 @@
                     </div>
                 </div>
             </div>
-            <div id="vinyl" class="box" th:if="${param.action == null}">
+            <div id="vinyl" class="box vinyl" th:if="${param.action == null}">
                 <hr/>
                 <h2 class="intro-text text-center">Vinyl Releases
                 </h2>
                 <hr/>
                 <div class="col-md-4 visible-md col-lg-4 visible-lg">
-                    <p class="lead">
+                    <figure>
                         <img class="img-responsive img-border img-left" src="../static/images/releases/vinyl.jpg" th:src="@{~/images/releases/vinyl.jpg}" />
-                    </p>
+                    </figure>
                 </div>
                 <div class="col-md-8 col-lg-8">
                     <p class="lead">
@@ -151,7 +151,7 @@
                 </div>
             </div>
             <div class="box">
-                <div class="col-lg-12">
+                <div class="col-lg-12 subscription">
                     <hr/>
                     <h2 class="intro-text text-center">Subscribe!
                     </h2>
@@ -160,10 +160,11 @@
                         We are currently experiencing problems with our subscription service.<br/>
                         Please be patient and try again later.
                     </div>
-                    <div th:if="${subscription == null and #httpServletRequest.getParameter('action') != 'subscriptionRejected'}" class="subscription">
-                        <p class="lead">
-                            <img class="img-responsive img-border img-left" src="../static/images/releases/fzm-Vinyl.Records-pic-22_200x200.jpg" th:src="@{~/images/releases/fzm-Vinyl.Records-pic-22_200x200.jpg}" />
-                        </p>
+                    <div th:if="${subscription == null and #httpServletRequest.getParameter('action') != 'subscriptionRejected'}" class="subscribe">
+                        <figure class="img-responsive img-left">
+                            <img src="../static/images/releases/email.svg" th:src="@{~/images/releases/email.svg}" />
+                            <figcaption><span class="glyphicon glyphicon-circle-arrow-right"></span></figcaption>
+                        </figure>
                         <hr class="visible-xs"/>
                         <p class="lead">
                             If you really like our music, don't miss out!<br/>
@@ -178,10 +179,11 @@
                             </p>
                         </form>
                     </div>
-                    <div th:if="${subscription != null and not subscription.verified and #httpServletRequest.getParameter('action') != 'subscriptionRejected'}" class="subscription">
-                        <p class="lead">
-                            <img class="img-responsive img-border img-left" src="../static/images/releases/fzm-Vinyl.Records-pic-02_200x200.jpg" th:src="@{~/images/releases/fzm-Vinyl.Records-pic-02_200x200.jpg}" />
-                        </p>
+                    <div th:if="${subscription != null and not subscription.verified and #httpServletRequest.getParameter('action') != 'subscriptionRejected'}" class="verify">
+                        <figure class="img-responsive img-left">
+                            <img src="../static/images/releases/email.svg" th:src="@{~/images/releases/email.svg}" />
+                            <figcaption><span class="glyphicon glyphicon-exclamation-sign"></span></figcaption>
+                        </figure>
                         <hr class="visible-xs"/>
                         <p class="lead">
                             Verification link has been sent to the email address you provided.
@@ -191,10 +193,11 @@
                             <button class="btn btn-default" type="submit">Unsubscribe</button>
                         </form>
                     </div>
-                    <div th:if="${#httpServletRequest.getParameter('action') == 'subscriptionRejected'}" class="subscription">
-                        <p class="lead">
-                            <img class="img-responsive img-border img-left" src="../static/images/releases/fzm-Vinyl.Records-pic-03_200x200.jpg" th:src="@{~/images/releases/fzm-Vinyl.Records-pic-03_200x200.jpg}" />
-                        </p>
+                    <div th:if="${#httpServletRequest.getParameter('action') == 'subscriptionRejected'}" class="failure">
+                        <figure class="img-responsive img-left">
+                            <img src="../static/images/releases/email.svg" th:src="@{~/images/releases/email.svg}" />
+                            <figcaption><span class="glyphicon glyphicon-remove-sign"></span></figcaption>
+                        </figure>
                         <hr class="visible-xs"/>
                         <p class="lead">
                             Verification link appears to be invalid! Are you sure, you copied it properly?
@@ -204,10 +207,11 @@
                             <button class="btn btn-default" type="submit">Unsubscribe</button>
                         </form>
                     </div>
-                    <div th:if="${subscription != null and subscription.verified}" class="subscription">
-                        <p class="lead">
-                               <img class="img-responsive img-border img-left" src="../static/images/releases/fzm-Vinyl.Records-pic-01g_200x200.jpg" th:src="@{~/images/releases/fzm-Vinyl.Records-pic-01g_200x200.jpg}" />
-                        </p>
+                    <div th:if="${subscription != null and subscription.verified}" class="success">
+                        <figure class="img-responsive img-left">
+                            <img src="../static/images/releases/email.svg" th:src="@{~/images/releases/email.svg}" />
+                            <figcaption><span class="glyphicon glyphicon-ok-sign"></span></figcaption>
+                        </figure>
                         <hr class="visible-xs"/>
                         <p class="lead">
                             Thank you! You've successfully subscribed to our mailing list.<br/>
@@ -231,11 +235,11 @@
                       <h2 class="intro-text text-center">Nei / Cosmic Monkey
                       </h2>
                       <hr/>
-                      <p class="lead picture">
+                      <figure>
                           <img class="img-responsive img-border img-left" 
                               src="../static/images/artists/nei_250.jpg" th:src="@{~/images/artists/nei_250.jpg}" 
                               srcset="../static/images/artists/nei_500.jpg 2x" th:attr="srcset=@{~/images/artists/nei_500.jpg} + ' 2x'"/>
-                      </p>
+                      </figure>
                       <hr class="visible-xs"/>
                       <p class="lead description">
                           DJ &amp; Producer from Ventspils, Planet Earth.
@@ -290,10 +294,10 @@
                       <h2 class="intro-text text-center">Deep-z / Masked Unit
                       </h2>
                       <hr/>
-                      <p class="lead picture" style="clear: both">
+                      <figure>
                           <img class="img-responsive img-border img-left" 
                               src="../static/images/artists/deep-z_250.jpg" th:src="@{~/images/artists/deep-z_250.jpg}" />
-                      </p>
+                      </figure>
                       <hr class="visible-xs"/>
                       <p class="lead description">
                         Techno and experimental DJ/producer since 1997.
@@ -336,10 +340,10 @@
                       <h2 class="intro-text text-center">Andris Rauda / Drone
                       </h2>
                       <hr/>
-                      <p class="lead picture">
+                      <figure>
                           <img class="img-responsive img-border img-left" 
                               src="../static/images/artists/drone_250.jpg" th:src="@{~/images/artists/drone_250.jpg}" />
-                      </p>
+                      </figure>
                       <hr class="visible-xs"/>
                       <p class="lead description">
                           Main driving force behind the Exposed Records.
