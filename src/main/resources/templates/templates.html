@@ -233,7 +233,8 @@
                       <hr/>
                       <p class="lead picture">
                           <img class="img-responsive img-border img-left" 
-                              src="../static/images/artists/nei_250.jpg" th:src="@{~/images/artists/nei_250.jpg}"/>
+                              src="../static/images/artists/nei_250.jpg" th:src="@{~/images/artists/nei_250.jpg}" 
+                              srcset="../static/images/artists/nei_500.jpg 2x" th:attr="srcset=@{~/images/artists/nei_500.jpg} + ' 2x'"/>
                       </p>
                       <hr class="visible-xs"/>
                       <p class="lead description">
