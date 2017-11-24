@@ -125,6 +125,7 @@ a:hover>img {
 .box {
     margin-bottom: 40px;
     padding: 30px 15px;
+    border-radius: 20px;
     background: #fff;
     background: rgba(255,255,255,0.9);
 }
@@ -394,6 +395,10 @@ footer p {
         text-transform: uppercase;
         letter-spacing: 0.05em;
     }
+
+	.box {
+	    border-radius: 25px;
+	}
 
   /* Start the vertical centering */
   .site-wrapper-inner {
