@@ -53,6 +53,8 @@ a {
 }
 
 a:hover {
+	color: #75b1e4;
+	text-decoration: none;
     transition: all 200ms ease-in-out;
     -o-transition: all 200ms ease-in-out;
     -moz-transition: all 200ms ease-in-out;
