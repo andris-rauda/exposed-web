@@ -6,7 +6,7 @@
 
 body {
     font-family: "Open Sans","Helvetica Neue",Helvetica,Arial,sans-serif;
-    background: url('../images/background_small.jpg') no-repeat center top fixed;
+    background: url('../images/background_small.jpg?v=2') no-repeat center top fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     background-size: cover;
@@ -129,7 +129,7 @@ a:hover>img {
     padding: 30px 15px;
     border-radius: 20px;
     background: #fff;
-    background: rgba(255,255,255,0.9);
+    background: rgba(255,255,255,0.95);
 }
 
 .box:after {
@@ -338,7 +338,7 @@ ul {
 
 footer {
     background: #fff;
-    background: rgba(255,255,255,0.9);
+    background: rgba(255,255,255,0.95);
 }
 
 footer p {
@@ -376,7 +376,7 @@ footer p {
 
 @media screen and (min-width:768px) {
     body {
-        background: url('../images/background_medium.jpg') no-repeat center top fixed;
+        background: url('../images/background_medium.jpg?v=2') no-repeat center top fixed;
         -webkit-background-size: cover;
         -moz-background-size: cover;
         background-size: cover;
@@ -443,7 +443,7 @@ footer p {
     .navbar-default {
         border: none;
         background: #fff;
-        background: rgba(255,255,255,0.9);
+        background: rgba(255,255,255,0.95);
     }
     .navbar-nav {
     	width: 100%;
@@ -514,7 +514,7 @@ footer p {
 
 @media screen and (min-width:1200px) {
     body {
-        background: url('../images/background_large.jpg') no-repeat center top fixed;
+        background: url('../images/background_large.jpg?v=2') no-repeat center top fixed;
         -webkit-background-size: cover;
         -moz-background-size: cover;
         background-size: cover;
