@@ -227,7 +227,7 @@ ul {
 }
 .artists ul.links li a {
 	vertical-align: middle;
-	padding: 2px 0 0 21px;
+	padding: 1px 0 0 22px;
 }
 
 .artists ul.links li a img {
@@ -281,6 +281,9 @@ ul {
 }
 .icon-s-facebook:before {
     background: transparent url(../images/social_icons/facebook_16.ico) scroll no-repeat left center; 
+}
+.icon-s-instagram:before {
+	background: transparent url(../images/social_icons/instagram_504.png) scroll no-repeat left center / 16px 16px;
 }
 .icon-s-gargan:before {
     background: transparent url(../images/social_icons/gargan_16.ico) scroll no-repeat left center; 
